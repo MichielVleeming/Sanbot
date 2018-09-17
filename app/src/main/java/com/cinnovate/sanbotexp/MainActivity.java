@@ -11,11 +11,30 @@ import android.view.WindowManager;
 
 import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
+import com.sanbot.opensdk.function.beans.LED;
+import com.sanbot.opensdk.function.beans.handmotion.NoAngleHandMotion;
+import com.sanbot.opensdk.function.beans.headmotion.AbsoluteAngleHeadMotion;
+import com.sanbot.opensdk.function.beans.speech.Grammar;
+import com.sanbot.opensdk.function.beans.speech.SpeakStatus;
+import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
+import com.sanbot.opensdk.function.unit.HandMotionManager;
 import com.sanbot.opensdk.function.unit.HardWareManager;
+import com.sanbot.opensdk.function.unit.HeadMotionManager;
+import com.sanbot.opensdk.function.unit.ModularMotionManager;
+import com.sanbot.opensdk.function.unit.SpeechManager;
+import com.sanbot.opensdk.function.unit.SystemManager;
+import com.sanbot.opensdk.function.unit.WheelMotionManager;
+import com.sanbot.opensdk.function.unit.interfaces.hardware.InfrareListener;
+import com.sanbot.opensdk.function.unit.interfaces.hardware.PIRListener;
+import com.sanbot.opensdk.function.unit.interfaces.hardware.TouchSensorListener;
+import com.sanbot.opensdk.function.unit.interfaces.hardware.VoiceLocateListener;
+import com.sanbot.opensdk.function.unit.interfaces.speech.RecognizeListener;
+import com.sanbot.opensdk.function.unit.interfaces.speech.SpeakListener;
+import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 
 public class MainActivity extends TopBaseActivity {
 
-    private HardWareManager hardWareManager;
+    HardWareManager hardWareManager;
 
     @Override
     protected void onMainServiceConnected() {
