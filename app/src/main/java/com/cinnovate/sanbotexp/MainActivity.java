@@ -65,7 +65,7 @@ public class MainActivity extends TopBaseActivity {
 
     public void setWhiteLight(View view) {
         hardWareManager.switchWhiteLight(true);
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, R.string.white_light_on, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
     }
