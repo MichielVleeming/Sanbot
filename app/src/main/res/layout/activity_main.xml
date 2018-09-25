@@ -74,4 +74,25 @@
             android:padding="16dp"
             android:text="@string/arm_activity" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/soundSourceStarter"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:padding="16dp"
+            android:text="@string/sound_activity" />
+
+        <Button
+            android:id="@+id/cameraStarter"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:padding="16dp"
+            android:text="@string/camera_activity" />
+    </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

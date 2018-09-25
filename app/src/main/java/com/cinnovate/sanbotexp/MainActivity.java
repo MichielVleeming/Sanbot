@@ -1,6 +1,7 @@
 package com.cinnovate.sanbotexp;
 
 import android.content.Intent;
+import android.graphics.Camera;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -61,7 +62,8 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
     SpeakOption speakOption = new SpeakOption();
     Button lightActivityStarter, wheelActivityStarter,
             headMovementActivityStarter, touchSensorActivityStarter,
-            speechActivityStarter, armActivityStarter;
+            speechActivityStarter, armActivityStarter, soundSourceStarter,
+            cameraStarter;
     Intent i;
 
     @Override
@@ -83,6 +85,8 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         touchSensorActivityStarter = findViewById(R.id.touchSensorActivityStarter);
         speechActivityStarter = findViewById(R.id.speechActivityStarter);
         armActivityStarter = findViewById(R.id.armMovementActivityStarter);
+        soundSourceStarter = findViewById(R.id.soundSourceStarter);
+        cameraStarter = findViewById(R.id.cameraStarter);
 
         wheelActivityStarter.setOnClickListener(this);
         lightActivityStarter.setOnClickListener(this);
@@ -90,6 +94,8 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         touchSensorActivityStarter.setOnClickListener(this);
         speechActivityStarter.setOnClickListener(this);
         armActivityStarter.setOnClickListener(this);
+        soundSourceStarter.setOnClickListener(this);
+        cameraStarter.setOnClickListener(this);
     }
 
     @Override
@@ -118,6 +124,14 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
                 break;
             case R.id.armMovementActivityStarter:
                 i = new Intent(this, ArmMovementActivity.class);
+                startActivity(i);
+                break;
+            case R.id.soundSourceStarter:
+                i = new Intent(this, SoundSourceActivity.class);
+                startActivity(i);
+                break;
+            case R.id.cameraStarter:
+                i = new Intent(this, CameraActivity.class);
                 startActivity(i);
                 break;
         }

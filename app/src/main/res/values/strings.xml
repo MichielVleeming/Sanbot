@@ -49,5 +49,9 @@
     <string name="arm_activity">Arm Movement Demo</string>
     <string name="move_hands_up">move hands up</string>
     <string name="move_hands_down">move hands down</string>
+    <string name="sound_source">The sounds are coming from...</string>
+    <string name="sound_activity">Sound Source Demo</string>
+    <string name="camera_activity">Camera Demo</string>
+    <string name="camera_start">Camera activity started succesfully</string>
 
 </resources>
