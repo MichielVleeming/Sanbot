@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,20 +12,16 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/wheelActivityStarter"
+            android:id="@+id/whiteLightOn"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:padding="16dp"
-
-            android:text="@string/wheel_activity_starter" />
+            android:layout_height="wrap_content"
+            android:text="@string/white_light_on" />
 
         <Button
-            android:id="@+id/lightsActivityStarter"
+            android:id="@+id/whiteLightBrighter"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:padding="16dp"
-
-            android:text="@string/lights_activity" />
+            android:layout_height="wrap_content"
+            android:text="@string/white_light_brighter" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,18 +32,15 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/headMovementActivityStarter"
+            android:id="@+id/turnOnAllLed"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:padding="16dp"
-            android:text="@string/head_activity" />
-
+            android:text="@string/all_led_on" />
         <Button
-            android:id="@+id/touchSensorActivityStarter"
+            android:id="@+id/turnOnHead"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:padding="16dp"
-            android:text="@string/touch_activity" />
+            android:text="@string/turn_head_led_on" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,17 +51,11 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/speechActivityStarter"
+            android:id="@+id/turnLedsOff"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:padding="16dp"
-            android:text="@string/speech_activity" />
-
-        <!--<Button-->
-            <!--android:id="@+id/touchSensorActivityStarter"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="48dp"-->
-            <!--android:padding="16dp"-->
-            <!--android:text="@string/touch_activity" />-->
+            android:text="@string/led_off" />
     </LinearLayout>
+
+
 </android.support.v7.widget.LinearLayoutCompat>
