@@ -6,6 +6,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.sanbot.opensdk.beans.FuncConstant;
+import com.sanbot.opensdk.function.beans.handmotion.NoAngleHandMotion;
+import com.sanbot.opensdk.function.beans.handmotion.RelativeAngleHandMotion;
 import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
 import com.sanbot.opensdk.function.beans.wheelmotion.NoAngleWheelMotion;
 import com.sanbot.opensdk.function.beans.wheelmotion.RelativeAngleWheelMotion;
@@ -46,9 +48,13 @@ public class WheelsActivity extends MainActivity implements View.OnClickListener
                 wheelMotionManager.doDistanceMotion(distanceWheelMotion);
                 break;
             case R.id.turnLeft:
-                wheelMotionManager.doRelativeAngleMotion(new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_LEFT, 5, 45));
+                RelativeAngleWheelMotion relativeAngleWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_LEFT, 5, 45);
+                wheelMotionManager.doRelativeAngleMotion(relativeAngleWheelMotion);
+                break;
             case R.id.noAngleWheelMotion:
-                wheelMotionManager.doNoAngleMotion(new NoAngleWheelMotion(NoAngleWheelMotion.ACTION_FORWARD_RUN,2,3000));
+                NoAngleWheelMotion noAngleWheelMotion = new NoAngleWheelMotion(NoAngleWheelMotion.ACTION_FORWARD_RUN,2,3000);
+                wheelMotionManager.doNoAngleMotion(noAngleWheelMotion);
+                break;
         }
 
     }

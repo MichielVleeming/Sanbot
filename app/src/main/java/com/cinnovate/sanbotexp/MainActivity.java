@@ -61,7 +61,7 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
     SpeakOption speakOption = new SpeakOption();
     Button lightActivityStarter, wheelActivityStarter,
             headMovementActivityStarter, touchSensorActivityStarter,
-            speechActivityStarter;
+            speechActivityStarter, armActivityStarter;
     Intent i;
 
     @Override
@@ -82,12 +82,14 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         headMovementActivityStarter = findViewById(R.id.headMovementActivityStarter);
         touchSensorActivityStarter = findViewById(R.id.touchSensorActivityStarter);
         speechActivityStarter = findViewById(R.id.speechActivityStarter);
+        armActivityStarter = findViewById(R.id.armMovementActivityStarter);
 
         wheelActivityStarter.setOnClickListener(this);
         lightActivityStarter.setOnClickListener(this);
         headMovementActivityStarter.setOnClickListener(this);
         touchSensorActivityStarter.setOnClickListener(this);
         speechActivityStarter.setOnClickListener(this);
+        armActivityStarter.setOnClickListener(this);
     }
 
     @Override
@@ -112,6 +114,10 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
                 break;
             case R.id.speechActivityStarter:
                 i = new Intent(this, SpeechActivity.class);
+                startActivity(i);
+                break;
+            case R.id.armMovementActivityStarter:
+                i = new Intent(this, ArmMovementActivity.class);
                 startActivity(i);
                 break;
         }

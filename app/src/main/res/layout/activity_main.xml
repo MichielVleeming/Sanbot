@@ -67,11 +67,11 @@
             android:padding="16dp"
             android:text="@string/speech_activity" />
 
-        <!--<Button-->
-            <!--android:id="@+id/touchSensorActivityStarter"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="48dp"-->
-            <!--android:padding="16dp"-->
-            <!--android:text="@string/touch_activity" />-->
+        <Button
+            android:id="@+id/armMovementActivityStarter"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:padding="16dp"
+            android:text="@string/arm_activity" />
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

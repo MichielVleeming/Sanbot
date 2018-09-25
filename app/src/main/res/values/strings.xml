@@ -45,5 +45,9 @@
 
     <string name="wheel_activity_starter">Wheel movement demo</string>
     <string name="lights_activity">Lights demo</string>
+    <string name="shake_hands">Shake Sanbots hand!</string>
+    <string name="arm_activity">Arm Movement Demo</string>
+    <string name="move_hands_up">move hands up</string>
+    <string name="move_hands_down">move hands down</string>
 
 </resources>

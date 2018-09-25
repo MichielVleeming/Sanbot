@@ -93,8 +93,7 @@ public class HeadMovementActivity extends MainActivity implements View.OnClickLi
                 headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
                 break;
             case R.id.resetHead:
-                locateAbsoluteAngleHeadMotion = new LocateAbsoluteAngleHeadMotion(LocateAbsoluteAngleHeadMotion.ACTION_BOTH_LOCK, 90, 15);
-                headMotionManager.doAbsoluteLocateMotion(locateAbsoluteAngleHeadMotion);
+                headMotionManager.doAbsoluteLocateMotion(new LocateAbsoluteAngleHeadMotion(LocateAbsoluteAngleHeadMotion.ACTION_BOTH_LOCK, 90, 15));
         }
     }
 }
