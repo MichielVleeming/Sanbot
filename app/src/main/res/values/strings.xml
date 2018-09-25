@@ -1,5 +1,53 @@
 <resources>
     <string name="app_name">SanbotExp</string>
     <string name="action_settings">Settings</string>
-    <string name="white_light_on">White light is now turned on</string>
+
+    <string name="white_light_on">Turn on White Light</string>
+    <string name="white_light_brighter">Make the WhiteLight brighter</string>
+    <string name="all_led_on">Turn on all LED's</string>
+    <string name="turn_head_led_on">Turn head LED on</string>
+
+    <string name="head_activity">Head Movement Demo</string>
+    <string name="relative_head_movement">Head movements relative to current position</string>
+    <string name="head_left">Turn head left</string>
+    <string name="head_right">Turn head right</string>
+    <string name="head_down">Turn head down</string>
+    <string name="head_up">Turn head up</string>
+    <string name="head_center">Reset head to center position</string>
+    <string name="head_absolute_up">turn head absolute up</string>
+    <string name="head_absolute_left">turn head absolute left</string>
+    <string name="head_absolute_right">turn head absolute right</string>
+    <string name="head_absolute_down">turn head absolute down</string>
+    <string name="absolute_head_movement">Absolute head movements</string>
+
+
+    <string name="touch_activity">Touch Sensor Demo</string>
+    <string name="touch_listener">Nothing has been touched yet...</string>
+
+    <string name="speech_activity">Speech Demo</string>
+    <string name="editable_speech_text">Edit this text</string>
+    <string name="test_text">Let Sanbot say your text</string>
+    <string name="trial_text">Or try a lorem Ipsum</string>
+
+    <string name="led_on">Leds on</string>
+    <string name="led_off">Leds off</string>
+
+    <string name="say_hi">Make Sanbot talk</string>
+    <string name="set_emotion">See Sanbots Emotion</string>
+
+    <string name="textview_wielen">Wielen</string>
+    <string name="movement_forward">Move Forward</string>
+    <string name="turn_left">Turn 45 degrees left</string>
+    <string name="no_angle_wheel_motion">Ga 3 seconden vooruit</string>
+
+    <string name="video_stream">Start video stream</string>
+    <string name="close_video_stream">Close video stream</string>
+
+    <string name="wheel_activity_starter">Wheel movement demo</string>
+    <string name="lights_activity">Lights demo</string>
+    <string name="shake_hands">Shake Sanbots hand!</string>
+    <string name="arm_activity">Arm Movement Demo</string>
+    <string name="move_hands_up">move hands up</string>
+    <string name="move_hands_down">move hands down</string>
+
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
+import android.text.method.Touch;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -56,25 +57,12 @@ import org.w3c.dom.Text;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class MainActivity extends TopBaseActivity {
-
-    HardWareManager hardWareManager;
-    SpeechManager speechManager;
-    HeadMotionManager headMotionManager;
-    RelativeAngleHeadMotion relativeAngleHeadMotion;
-    AbsoluteAngleHeadMotion absoluteAngleHeadMotion;
-    LocateAbsoluteAngleHeadMotion locateAbsoluteAngleHeadMotion;
-    ProjectorManager projectorManager;
-    WheelMotionManager wheelMotionManager;
-    SystemManager systemManager;
-    EmotionsType currentEmotion, emotions[];
+public class MainActivity extends TopBaseActivity implements View.OnClickListener {
     SpeakOption speakOption = new SpeakOption();
-    Button ledOn, ledOff, headLeft, headRight,
-            headUp, headDown, buttonSayHi, buttonWheelForward,
-            setEmotion, headAbsoluteLeft, headAbsoluteRight, headCenter,
-            headAbsoluteUp, headAbsoluteDown, moveForward,
-            videoStream, closeStream;
-
+    Button lightActivityStarter, wheelActivityStarter,
+            headMovementActivityStarter, touchSensorActivityStarter,
+            speechActivityStarter, armActivityStarter;
+    Intent i;
 
     @Override
     protected void onMainServiceConnected() {
@@ -89,261 +77,49 @@ public class MainActivity extends TopBaseActivity {
         super.onCreate(savedInstanceState);
         onMainServiceConnected();
         setContentView(R.layout.activity_main);
-        hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
-        speechManager = (SpeechManager) getUnitManager(FuncConstant.SPEECH_MANAGER);
-        headMotionManager = (HeadMotionManager) getUnitManager(FuncConstant.HEADMOTION_MANAGER);
-        wheelMotionManager = (WheelMotionManager) getUnitManager(FuncConstant.WHEELMOTION_MANAGER);
-        systemManager = (SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER);
-        projectorManager = (ProjectorManager) getUnitManager(FuncConstant.PROJECTOR_MANAGER);
-        speakOption.setSpeed(30);
-        ledOn = findViewById(R.id.ledOn);
-        videoStream = findViewById(R.id.videoStream);
-        ledOff = findViewById(R.id.ledOff);
-        headLeft = findViewById(R.id.headLeft);
-        headRight = findViewById(R.id.headRight);
-        closeStream = findViewById(R.id.closeStream);
-        headUp = findViewById(R.id.headUp);
-        headDown = findViewById(R.id.headDown);
-        headAbsoluteLeft = findViewById(R.id.headAbsoluteLeft);
-        headAbsoluteRight = findViewById(R.id.headAbsoluteRight);
-        headAbsoluteUp = findViewById(R.id.headAbsoluteUp);
-        headAbsoluteDown = findViewById(R.id.headAbsoluteDown);
-        buttonSayHi = findViewById(R.id.buttonSayHi);
-        buttonWheelForward = findViewById(R.id.buttonWheelForward);
-        setEmotion = findViewById(R.id.setEmotion);
-        headCenter = findViewById(R.id.headCenter);
-        emotions = new EmotionsType[]{EmotionsType.CRY, EmotionsType.SURPRISE, EmotionsType.KISS, EmotionsType.LAUGHTER};
-        moveForward = findViewById(R.id.moveForward);
-        setonClicks();
-        touchTest();
+        wheelActivityStarter = findViewById(R.id.wheelActivityStarter);
+        lightActivityStarter = findViewById(R.id.lightsActivityStarter);
+        headMovementActivityStarter = findViewById(R.id.headMovementActivityStarter);
+        touchSensorActivityStarter = findViewById(R.id.touchSensorActivityStarter);
+        speechActivityStarter = findViewById(R.id.speechActivityStarter);
+        armActivityStarter = findViewById(R.id.armMovementActivityStarter);
+
+        wheelActivityStarter.setOnClickListener(this);
+        lightActivityStarter.setOnClickListener(this);
+        headMovementActivityStarter.setOnClickListener(this);
+        touchSensorActivityStarter.setOnClickListener(this);
+        speechActivityStarter.setOnClickListener(this);
+        armActivityStarter.setOnClickListener(this);
     }
-
-    public void setonClicks() {
-        videoStream.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                startVideoStream();
-            }
-        });
-//        closeStream.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                closeStream();
-//            }
-//        });
-        ledOn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setWhiteLightOn(view);
-
-            }
-        });
-        ledOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setLightsOff(view);
-            }
-        });
-        headLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("left");
-            }
-        });
-        headRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("right");
-            }
-        });
-        headUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("up");
-            }
-        });
-        headDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("down");
-            }
-        });
-        headCenter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("center");
-            }
-        });
-        headAbsoluteLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("absoluteLeft");
-            }
-        });
-        headAbsoluteRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("absoluteRight");
-            }
-        });
-        headAbsoluteUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("absoluteUp");
-            }
-        });
-        headAbsoluteDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                turnHead("absoluteDown");
-            }
-        });
-        buttonSayHi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testSpeech();
-            }
-        });
-        buttonWheelForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                wheelGoForward();
-            }
-        });
-        moveForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveWheel("forwardOneMeter");
-            }
-        });
-
-
-
-    }
-
-    public void currentEmotion() {
-        Random rand = new Random();
-        currentEmotion = EmotionsType.ANGRY;
-        systemManager.showEmotion(currentEmotion);
-    }
-
-    public void wheelGoForward() {
-        DistanceWheelMotion distanceWheelMotion = new DistanceWheelMotion(DistanceWheelMotion.ACTION_FORWARD_RUN, 5, 50);
-        wheelMotionManager.doDistanceMotion(distanceWheelMotion);
-    }
-
-    public void setWhiteLightOn(View view) {
-        hardWareManager.setWhiteLightLevel(3);
-        hardWareManager.switchWhiteLight(true);
-        hardWareManager.setLED(new LED(LED.PART_ALL, LED.MODE_PINK));
-
-        Snackbar.make(view, R.string.white_light_on, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-
-    }
-
-    public void testSpeech() {
-        speechManager.startSpeak("Hello there, my name is San Bot", speakOption);
-    }
-
-    public void setLightsOff(View view) {
-        hardWareManager.setLED(new LED(LED.PART_ALL, LED.MODE_CLOSE));
-        hardWareManager.switchWhiteLight(false);
-    }
-
-    public void touchTest() {
-        hardWareManager.setOnHareWareListener(new TouchSensorListener() {
-            @Override
-            public void onTouch(int part) {
-                if (part == 11 || part == 12 || part == 13 || part == 10 || part == 9) {
-                    hardWareManager.switchWhiteLight(true);
-
-                }
-            }
-        });
-    }
-
-    public void turnHead(String headMovement) {
-        switch (headMovement) {
-            case "right":
-                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_RIGHT, 30);
-                headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
-                break;
-            case "left":
-                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_LEFT, 30);
-                headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
-                break;
-            case "up":
-                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_LEFTUP, 80);
-                headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
-                break;
-            case "down":
-                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_DOWN, 30);
-                headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
-                break;
-            case "absoluteRight":
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL, 180);
-                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
-                break;
-            case "absoluteLeft":
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL, 0);
-                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
-                break;
-            case "absoluteUp":
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL, 30);
-                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
-                break;
-            case "absoluteDown":
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL, 7);
-                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
-                break;
-            case "center":
-                locateAbsoluteAngleHeadMotion = new LocateAbsoluteAngleHeadMotion(LocateAbsoluteAngleHeadMotion.ACTION_BOTH_LOCK, 90, 15);
-                headMotionManager.doAbsoluteLocateMotion(locateAbsoluteAngleHeadMotion);
-                break;
-        }
-
-    }
-
-    public void moveWheel(String moveSanbot) {
-        switch (moveSanbot) {
-            case "forwardOneMeter":
-                RelativeAngleWheelMotion distanceWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_LEFT, 5, 50);
-                wheelMotionManager.doRelativeAngleMotion(distanceWheelMotion);
-                break;
-        }
-    }
-    public void startVideoStream(){
-        projectorManager.switchProjector(true);
-        projectorManager.setMode(ProjectorManager.MODE_WALL);
-
-    }
-//    public void closeStream(){
-//        mediaManager.closeStream();
-//    }
-
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onClick(View v) {
+        int x = v.getId();
+        switch (x) {
+            case R.id.wheelActivityStarter:
+                i = new Intent(this, WheelsActivity.class);
+                startActivity(i);
+                break;
+            case R.id.lightsActivityStarter:
+                i = new Intent(this, LightsActivity.class);
+                startActivity(i);
+                break;
+            case R.id.headMovementActivityStarter:
+                i = new Intent(this, HeadMovementActivity.class);
+                startActivity(i);
+                break;
+            case R.id.touchSensorActivityStarter:
+                i = new Intent(this, TouchSensorActivity.class);
+                startActivity(i);
+                break;
+            case R.id.speechActivityStarter:
+                i = new Intent(this, SpeechActivity.class);
+                startActivity(i);
+                break;
+            case R.id.armMovementActivityStarter:
+                i = new Intent(this, ArmMovementActivity.class);
+                startActivity(i);
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
     }
-
 }

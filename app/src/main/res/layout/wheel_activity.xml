@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/moveForward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movement_forward" />
+
+        <Button
+            android:id="@+id/turnLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/turn_left"/>
+        <Button
+            android:id="@+id/noAngleWheelMotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_angle_wheel_motion"/>
+    </LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>

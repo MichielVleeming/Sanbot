@@ -25,6 +25,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".WheelsActivity">
+            <intent-filter>
+            <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".LightsActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".HeadMovementActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".TouchSensorActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SpeechActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ArmMovementActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

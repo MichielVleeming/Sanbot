@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/shake_hands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shake_hands"
+        />
+    <Button
+        android:id="@+id/moveHandsUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/move_hands_up"/>
+    <Button
+        android:id="@+id/moveHandsDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/move_hands_down"/>
+
+</android.support.v7.widget.LinearLayoutCompat>
