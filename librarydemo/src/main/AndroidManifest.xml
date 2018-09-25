@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sanbot.librarydemo">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="com.sanbot.librarydemo.MainActivity">
+            <meta-data
+                android:name="FORBID_PIR"
+                android:value="true" />
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+        <activity
+            android:name="com.sanbot.librarydemo.VideoActivity"
+            android:exported="true"
+            android:hardwareAccelerated="true">
+            <meta-data
+                android:name="config_record"
+                android:value="false" />
+        </activity>
+
+        <!--功能菜单-->
+        <activity android:name="com.sanbot.librarydemo.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--语音控制-->
+        <activity
+            android:name="com.sanbot.librarydemo.SpeechControlActivity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <!--硬件控制-->
+        <activity
+            android:name="com.sanbot.librarydemo.HardwareControlActivity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="SELF_CHECK"
+                android:value="true" />
+            <meta-data
+                android:name="FORBID_TOUCH"
+                android:value="true" />
+        </activity>
+        <!--Ir sensor-->
+        <activity android:name="com.sanbot.librarydemo.IRSensorActivity" />
+        <!--系统管理-->
+        <activity android:name="com.sanbot.librarydemo.SystemControlActivity" />
+        <!--头部控制-->
+        <activity android:name="com.sanbot.librarydemo.HeadControlActivity" />
+        <!--手部控制-->
+        <activity android:name="com.sanbot.librarydemo.HandControlActivity" />
+        <!--轮子控制-->
+        <activity android:name="com.sanbot.librarydemo.WheelControlActivity" />
+        <!--媒体控制-->
+        <activity
+            android:name="com.sanbot.librarydemo.MediaControlActivity"
+            android:exported="true"
+            android:hardwareAccelerated="true" />
+        <!--投影仪控制-->
+        <activity android:name="com.sanbot.librarydemo.ProjectorControlActivity" />
+        <!--模块化控制-->
+        <activity android:name="com.sanbot.librarydemo.ModularityControlActivity">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity android:name="com.sanbot.librarydemo.FaceRecognizeActivity" />
+
+        <service
+            android:name="com.sanbot.librarydemo.MainService"
+            android:exported="true">
+            <meta-data
+                android:name="SELF_CHECK"
+                android:value="true" />
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </service>
+        <provider
+            android:name="com.sanbot.opensdk.utils.GrammarProvider"
+
+            android:authorities="com.qihancloud.librarydemo.grammar"
+            android:exported="true" />
+    </application>
+
+</manifest>
