@@ -1,10 +1,12 @@
 package com.cinnovate.sanbotexp;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,23 +15,30 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.qihancloud.opensdk.function.unit.MediaManager;
 import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
+import com.sanbot.opensdk.beans.OperationResult;
 import com.sanbot.opensdk.function.beans.EmotionsType;
 import com.sanbot.opensdk.function.beans.LED;
 import com.sanbot.opensdk.function.beans.SpeakOption;
+import com.sanbot.opensdk.function.beans.StreamOption;
 import com.sanbot.opensdk.function.beans.handmotion.NoAngleHandMotion;
 import com.sanbot.opensdk.function.beans.handmotion.RelativeAngleHandMotion;
 import com.sanbot.opensdk.function.beans.headmotion.AbsoluteAngleHeadMotion;
+import com.sanbot.opensdk.function.beans.headmotion.LocateAbsoluteAngleHeadMotion;
+import com.sanbot.opensdk.function.beans.headmotion.LocateRelativeAngleHeadMotion;
 import com.sanbot.opensdk.function.beans.headmotion.RelativeAngleHeadMotion;
 import com.sanbot.opensdk.function.beans.speech.Grammar;
 import com.sanbot.opensdk.function.beans.speech.SpeakStatus;
 import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
 import com.sanbot.opensdk.function.beans.wheelmotion.NoAngleWheelMotion;
+import com.sanbot.opensdk.function.beans.wheelmotion.RelativeAngleWheelMotion;
 import com.sanbot.opensdk.function.unit.HandMotionManager;
 import com.sanbot.opensdk.function.unit.HardWareManager;
 import com.sanbot.opensdk.function.unit.HeadMotionManager;
 import com.sanbot.opensdk.function.unit.ModularMotionManager;
+import com.sanbot.opensdk.function.unit.ProjectorManager;
 import com.sanbot.opensdk.function.unit.SpeechManager;
 import com.sanbot.opensdk.function.unit.SystemManager;
 import com.sanbot.opensdk.function.unit.WheelMotionManager;
@@ -45,6 +54,7 @@ import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 import org.w3c.dom.Text;
 
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class MainActivity extends TopBaseActivity {
 
@@ -52,13 +62,18 @@ public class MainActivity extends TopBaseActivity {
     SpeechManager speechManager;
     HeadMotionManager headMotionManager;
     RelativeAngleHeadMotion relativeAngleHeadMotion;
+    AbsoluteAngleHeadMotion absoluteAngleHeadMotion;
+    LocateAbsoluteAngleHeadMotion locateAbsoluteAngleHeadMotion;
+    ProjectorManager projectorManager;
     WheelMotionManager wheelMotionManager;
     SystemManager systemManager;
     EmotionsType currentEmotion, emotions[];
     SpeakOption speakOption = new SpeakOption();
     Button ledOn, ledOff, headLeft, headRight,
             headUp, headDown, buttonSayHi, buttonWheelForward,
-            setEmotion;
+            setEmotion, headAbsoluteLeft, headAbsoluteRight, headCenter,
+            headAbsoluteUp, headAbsoluteDown, moveForward,
+            videoStream, closeStream;
 
 
     @Override
@@ -79,22 +94,43 @@ public class MainActivity extends TopBaseActivity {
         headMotionManager = (HeadMotionManager) getUnitManager(FuncConstant.HEADMOTION_MANAGER);
         wheelMotionManager = (WheelMotionManager) getUnitManager(FuncConstant.WHEELMOTION_MANAGER);
         systemManager = (SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER);
+        projectorManager = (ProjectorManager) getUnitManager(FuncConstant.PROJECTOR_MANAGER);
         speakOption.setSpeed(30);
         ledOn = findViewById(R.id.ledOn);
+        videoStream = findViewById(R.id.videoStream);
         ledOff = findViewById(R.id.ledOff);
         headLeft = findViewById(R.id.headLeft);
         headRight = findViewById(R.id.headRight);
+        closeStream = findViewById(R.id.closeStream);
         headUp = findViewById(R.id.headUp);
         headDown = findViewById(R.id.headDown);
+        headAbsoluteLeft = findViewById(R.id.headAbsoluteLeft);
+        headAbsoluteRight = findViewById(R.id.headAbsoluteRight);
+        headAbsoluteUp = findViewById(R.id.headAbsoluteUp);
+        headAbsoluteDown = findViewById(R.id.headAbsoluteDown);
         buttonSayHi = findViewById(R.id.buttonSayHi);
         buttonWheelForward = findViewById(R.id.buttonWheelForward);
         setEmotion = findViewById(R.id.setEmotion);
-        emotions = new EmotionsType[]{EmotionsType.ANGRY, EmotionsType.CRY, EmotionsType.SURPRISE, EmotionsType.KISS, EmotionsType.LAUGHTER};
+        headCenter = findViewById(R.id.headCenter);
+        emotions = new EmotionsType[]{EmotionsType.CRY, EmotionsType.SURPRISE, EmotionsType.KISS, EmotionsType.LAUGHTER};
+        moveForward = findViewById(R.id.moveForward);
         setonClicks();
         touchTest();
     }
 
     public void setonClicks() {
+        videoStream.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startVideoStream();
+            }
+        });
+//        closeStream.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                closeStream();
+//            }
+//        });
         ledOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +168,36 @@ public class MainActivity extends TopBaseActivity {
                 turnHead("down");
             }
         });
+        headCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnHead("center");
+            }
+        });
+        headAbsoluteLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnHead("absoluteLeft");
+            }
+        });
+        headAbsoluteRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnHead("absoluteRight");
+            }
+        });
+        headAbsoluteUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnHead("absoluteUp");
+            }
+        });
+        headAbsoluteDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                turnHead("absoluteDown");
+            }
+        });
         buttonSayHi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,18 +210,20 @@ public class MainActivity extends TopBaseActivity {
                 wheelGoForward();
             }
         });
-        setEmotion.setOnClickListener(new View.OnClickListener() {
+        moveForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion();
+                moveWheel("forwardOneMeter");
             }
         });
+
+
 
     }
 
     public void currentEmotion() {
         Random rand = new Random();
-        currentEmotion = emotions[rand.nextInt(emotions.length)];
+        currentEmotion = EmotionsType.ANGRY;
         systemManager.showEmotion(currentEmotion);
     }
 
@@ -165,8 +233,10 @@ public class MainActivity extends TopBaseActivity {
     }
 
     public void setWhiteLightOn(View view) {
+        hardWareManager.setWhiteLightLevel(3);
         hardWareManager.switchWhiteLight(true);
-        hardWareManager.setLED(new LED(LED.PART_ALL, LED.MODE_FLICKER_RANDOM, (byte) 10, (byte) 3));
+        hardWareManager.setLED(new LED(LED.PART_ALL, LED.MODE_PINK));
+
         Snackbar.make(view, R.string.white_light_on, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
@@ -177,9 +247,10 @@ public class MainActivity extends TopBaseActivity {
     }
 
     public void setLightsOff(View view) {
-        hardWareManager.setLED(new LED(LED.PART_ALL, LED.MODE_CLOSE, (byte) 10, (byte) 3));
+        hardWareManager.setLED(new LED(LED.PART_ALL, LED.MODE_CLOSE));
         hardWareManager.switchWhiteLight(false);
     }
+
     public void touchTest() {
         hardWareManager.setOnHareWareListener(new TouchSensorListener() {
             @Override
@@ -191,6 +262,7 @@ public class MainActivity extends TopBaseActivity {
             }
         });
     }
+
     public void turnHead(String headMovement) {
         switch (headMovement) {
             case "right":
@@ -202,15 +274,53 @@ public class MainActivity extends TopBaseActivity {
                 headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
                 break;
             case "up":
-                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_UP, 30);
+                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_LEFTUP, 80);
                 headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
                 break;
             case "down":
                 relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_DOWN, 30);
                 headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
                 break;
+            case "absoluteRight":
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL, 180);
+                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
+                break;
+            case "absoluteLeft":
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL, 0);
+                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
+                break;
+            case "absoluteUp":
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL, 30);
+                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
+                break;
+            case "absoluteDown":
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL, 7);
+                headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
+                break;
+            case "center":
+                locateAbsoluteAngleHeadMotion = new LocateAbsoluteAngleHeadMotion(LocateAbsoluteAngleHeadMotion.ACTION_BOTH_LOCK, 90, 15);
+                headMotionManager.doAbsoluteLocateMotion(locateAbsoluteAngleHeadMotion);
+                break;
+        }
+
+    }
+
+    public void moveWheel(String moveSanbot) {
+        switch (moveSanbot) {
+            case "forwardOneMeter":
+                RelativeAngleWheelMotion distanceWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_LEFT, 5, 50);
+                wheelMotionManager.doRelativeAngleMotion(distanceWheelMotion);
+                break;
         }
     }
+    public void startVideoStream(){
+        projectorManager.switchProjector(true);
+        projectorManager.setMode(ProjectorManager.MODE_WALL);
+
+    }
+//    public void closeStream(){
+//        mediaManager.closeStream();
+//    }
 
 
     @Override
@@ -235,4 +345,5 @@ public class MainActivity extends TopBaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
