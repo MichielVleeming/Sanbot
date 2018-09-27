@@ -61,7 +61,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CameraActivity">
+        <activity android:name=".CameraActivity"
+            android:exported="true"
+            android:hardwareAccelerated="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
