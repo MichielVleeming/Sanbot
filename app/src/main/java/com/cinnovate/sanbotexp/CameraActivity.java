@@ -1,32 +1,25 @@
 package com.cinnovate.sanbotexp;
 
-import android.graphics.Bitmap;
 import android.media.AudioTrack;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.qihancloud.opensdk.function.unit.MediaManager;
 import com.sanbot.opensdk.base.BindBaseActivity;
-import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.StreamOption;
-import com.sanbot.opensdk.function.unit.interfaces.media.MediaListener;
 import com.sanbot.opensdk.function.unit.interfaces.media.MediaStreamListener;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.stream.Stream;
 
 public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Callback {
-    SurfaceView surfaceView;
+    VideoView videoView;
     MediaCodec videoDecoder;
     ByteBuffer[] videoInputBuffers;
     final static String videoMimeType = "video/avc";
@@ -45,7 +38,7 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
         super.onCreate(savedInstanceState);
         onMainServiceConnected();
         setContentView(R.layout.camera_activity);
-        surfaceView = findViewById(R.id.stream_video);
+        videoView = findViewById(R.id.stream_video);
 
         mediaManager = (MediaManager) getUnitManager(FuncConstant.MEDIA_MANAGER);
 
@@ -60,7 +53,7 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
 
             }
         });
-        surfaceView.getHolder().addCallback(this);
+        videoView.getHolder().addCallback(this);
     }
 
     @Override
