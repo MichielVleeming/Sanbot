@@ -63,7 +63,7 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
     Button lightActivityStarter, wheelActivityStarter,
             headMovementActivityStarter, touchSensorActivityStarter,
             speechActivityStarter, armActivityStarter, soundSourceStarter,
-            cameraStarter;
+            cameraStarter, pirStarter, projectorStarter;
     Intent i;
 
     @Override
@@ -87,6 +87,8 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         armActivityStarter = findViewById(R.id.armMovementActivityStarter);
         soundSourceStarter = findViewById(R.id.soundSourceStarter);
         cameraStarter = findViewById(R.id.cameraStarter);
+        pirStarter = findViewById(R.id.pirStarter);
+        projectorStarter = findViewById(R.id.projectorStarter);
 
         wheelActivityStarter.setOnClickListener(this);
         lightActivityStarter.setOnClickListener(this);
@@ -96,44 +98,45 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         armActivityStarter.setOnClickListener(this);
         soundSourceStarter.setOnClickListener(this);
         cameraStarter.setOnClickListener(this);
+        pirStarter.setOnClickListener(this);
+        projectorStarter.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        int x = v.getId();
-        switch (x) {
+        int viewId = v.getId();
+        switch (viewId) {
             case R.id.wheelActivityStarter:
                 i = new Intent(this, WheelsActivity.class);
-                startActivity(i);
                 break;
             case R.id.lightsActivityStarter:
                 i = new Intent(this, LightsActivity.class);
-                startActivity(i);
                 break;
             case R.id.headMovementActivityStarter:
                 i = new Intent(this, HeadMovementActivity.class);
-                startActivity(i);
                 break;
             case R.id.touchSensorActivityStarter:
                 i = new Intent(this, TouchSensorActivity.class);
-                startActivity(i);
                 break;
             case R.id.speechActivityStarter:
                 i = new Intent(this, SpeechActivity.class);
-                startActivity(i);
                 break;
             case R.id.armMovementActivityStarter:
                 i = new Intent(this, ArmMovementActivity.class);
-                startActivity(i);
                 break;
             case R.id.soundSourceStarter:
                 i = new Intent(this, SoundSourceActivity.class);
-                startActivity(i);
                 break;
             case R.id.cameraStarter:
                 i = new Intent(this, CameraActivity.class);
-                startActivity(i);
+                break;
+            case R.id.pirStarter:
+                i = new Intent(this, PirActivity.class);
+                break;
+            case R.id.projectorStarter:
+                i = new Intent(this, ProjectorActivity.class);
                 break;
         }
+        startActivity(i);
     }
 }
