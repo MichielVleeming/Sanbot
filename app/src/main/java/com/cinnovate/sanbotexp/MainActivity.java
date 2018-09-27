@@ -1,6 +1,7 @@
 package com.cinnovate.sanbotexp;
 
 import android.content.Intent;
+import android.graphics.Camera;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -61,7 +62,8 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
     SpeakOption speakOption = new SpeakOption();
     Button lightActivityStarter, wheelActivityStarter,
             headMovementActivityStarter, touchSensorActivityStarter,
-            speechActivityStarter, armActivityStarter;
+            speechActivityStarter, armActivityStarter, soundSourceStarter,
+            cameraStarter, pirStarter, projectorStarter;
     Intent i;
 
     @Override
@@ -83,6 +85,10 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         touchSensorActivityStarter = findViewById(R.id.touchSensorActivityStarter);
         speechActivityStarter = findViewById(R.id.speechActivityStarter);
         armActivityStarter = findViewById(R.id.armMovementActivityStarter);
+        soundSourceStarter = findViewById(R.id.soundSourceStarter);
+        cameraStarter = findViewById(R.id.cameraStarter);
+        pirStarter = findViewById(R.id.pirStarter);
+        projectorStarter = findViewById(R.id.projectorStarter);
 
         wheelActivityStarter.setOnClickListener(this);
         lightActivityStarter.setOnClickListener(this);
@@ -90,36 +96,47 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         touchSensorActivityStarter.setOnClickListener(this);
         speechActivityStarter.setOnClickListener(this);
         armActivityStarter.setOnClickListener(this);
+        soundSourceStarter.setOnClickListener(this);
+        cameraStarter.setOnClickListener(this);
+        pirStarter.setOnClickListener(this);
+        projectorStarter.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        int x = v.getId();
-        switch (x) {
+        int viewId = v.getId();
+        switch (viewId) {
             case R.id.wheelActivityStarter:
                 i = new Intent(this, WheelsActivity.class);
-                startActivity(i);
                 break;
             case R.id.lightsActivityStarter:
                 i = new Intent(this, LightsActivity.class);
-                startActivity(i);
                 break;
             case R.id.headMovementActivityStarter:
                 i = new Intent(this, HeadMovementActivity.class);
-                startActivity(i);
                 break;
             case R.id.touchSensorActivityStarter:
                 i = new Intent(this, TouchSensorActivity.class);
-                startActivity(i);
                 break;
             case R.id.speechActivityStarter:
                 i = new Intent(this, SpeechActivity.class);
-                startActivity(i);
                 break;
             case R.id.armMovementActivityStarter:
                 i = new Intent(this, ArmMovementActivity.class);
-                startActivity(i);
+                break;
+            case R.id.soundSourceStarter:
+                i = new Intent(this, SoundSourceActivity.class);
+                break;
+            case R.id.cameraStarter:
+                i = new Intent(this, CameraActivity.class);
+                break;
+            case R.id.pirStarter:
+                i = new Intent(this, PirActivity.class);
+                break;
+            case R.id.projectorStarter:
+                i = new Intent(this, ProjectorActivity.class);
                 break;
         }
+        startActivity(i);
     }
 }

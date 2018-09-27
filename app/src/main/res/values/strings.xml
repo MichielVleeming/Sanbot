@@ -4,7 +4,7 @@
 
     <string name="white_light_on">Turn on White Light</string>
     <string name="white_light_brighter">Make the WhiteLight brighter</string>
-    <string name="all_led_on">Turn on all LED's</string>
+    <string name="all_led_on">Turn on all LED\'s</string>
     <string name="turn_head_led_on">Turn head LED on</string>
 
     <string name="head_activity">Head Movement Demo</string>
@@ -49,5 +49,16 @@
     <string name="arm_activity">Arm Movement Demo</string>
     <string name="move_hands_up">move hands up</string>
     <string name="move_hands_down">move hands down</string>
+    <string name="sound_source">The sounds are coming from...</string>
+    <string name="sound_activity">Sound Source Demo</string>
+    <string name="camera_activity">Camera Demo</string>
+    <string name="camera_start">Camera activity started succesfully</string>
+    <string name="pir_start">Is there a PIR?</string>
+    <string name="pir_value">PlaceHolder</string>
+    <string name="pirStarter">PIR demo</string>
+    <string name="projector_activity">Projector Demo</string>
+    <string name="start_projector">Start the projector</string>
+    <string name="check_projector">Check if projector is turned on</string>
+    <string name="close_projector">Close Projector</string>
 
 </resources>
