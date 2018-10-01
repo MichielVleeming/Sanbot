@@ -18,8 +18,6 @@ import com.sanbot.opensdk.function.unit.ProjectorManager;
 public class ProjectorActivity extends TopBaseActivity implements View.OnClickListener {
     ProjectorManager projectorManager;
     Button projectorOpen, closeProjector, checkProjector;
-    private int[] mirrorMode = {ProjectorManager.MIRROR_CLOSE, ProjectorManager.MIRROR_LR, ProjectorManager.MIRROR_UD, ProjectorManager.MIRROR_ALL};
-    private int[] mode = {ProjectorManager.MODE_WALL, ProjectorManager.MODE_CEILING};
     ImageView projectorImage;
 
     @Override
@@ -40,9 +38,6 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
         checkProjector.setOnClickListener(this);
         closeProjector = findViewById(R.id.closeProjector);
         closeProjector.setOnClickListener(this);
-        //Set mode & mirror to default
-        projectorManager.setMode(ProjectorManager.MODE_WALL);
-        projectorManager.setMirror(ProjectorManager.MIRROR_CLOSE);
     }
 
     @Override
@@ -70,6 +65,10 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
         boolean checked = ((RadioButton) v).isChecked();
 
         switch (v.getId()) {
+            default:
+                projectorManager.setMirror(ProjectorManager.MIRROR_CLOSE);
+                projectorManager.setMode(ProjectorManager.MODE_WALL);
+                break;
             case R.id.radio_wall:
                 if (checked)
                     projectorManager.setMode(ProjectorManager.MODE_WALL);
@@ -94,6 +93,7 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
                 if (checked)
                     projectorManager.setMirror(ProjectorManager.MIRROR_UD);
                 break;
+
         }
     }
 
