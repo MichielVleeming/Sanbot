@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.sanbot.opensdk.base.BindBaseActivity;
 import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
@@ -17,7 +19,7 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
     Button projectorOpen, closeProjector, checkProjector;
     private int[] mirrorMode = {ProjectorManager.MIRROR_CLOSE, ProjectorManager.MIRROR_LR, ProjectorManager.MIRROR_UD, ProjectorManager.MIRROR_ALL};
     private int[] mode = {ProjectorManager.MODE_WALL, ProjectorManager.MODE_CEILING};
-
+    ImageView projectorImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +29,16 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projector);
 
+        projectorManager = (ProjectorManager) getUnitManager(FuncConstant.PROJECTOR_MANAGER);
+
+        onMainServiceConnected();
+        projectorImage = findViewById(R.id.projectorImage);
         projectorOpen = findViewById(R.id.startProjector);
         projectorOpen.setOnClickListener(this);
         checkProjector = findViewById(R.id.checkProjector);
         checkProjector.setOnClickListener(this);
         closeProjector = findViewById(R.id.closeProjector);
         closeProjector.setOnClickListener(this);
-        projectorManager = (ProjectorManager) getUnitManager(FuncConstant.PROJECTOR_MANAGER);
-        projectorManager.setMirror(mirrorMode[0]);
-        projectorManager.setTrapezoidH(10);
-        projectorManager.setTrapezoidV(10);
-        projectorManager.setContrast(10);
-        projectorManager.setBright(10);
-        projectorManager.setColor(10);
-        projectorManager.setSaturation(10);
-        projectorManager.setAcuity(10);
-        projectorManager.setMode(mode[0]);
     }
 
     @Override
@@ -51,16 +47,23 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
         switch (v.getId()) {
 
             case R.id.startProjector:
+                projectorManager.setMode(ProjectorManager.MODE_WALL);
+                projectorManager.setMirror(ProjectorManager.MIRROR_CLOSE);
+                projectorManager.
                 projectorManager.switchProjector(true);
-                projectorManager.queryConfig(ProjectorManager.CONFIG_SWITCH);
+
                 break;
             case R.id.closeProjector:
                 projectorManager.switchProjector(false);
                 break;
             case R.id.checkProjector:
-                projectorManager.queryConfig("abc");
-                }
+                Glide.with(this)
+                        .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+                        .into(projectorImage);
+                projectorImage.setVisibility(View.VISIBLE);
+
         }
+    }
 
     @Override
     protected void onMainServiceConnected() {
