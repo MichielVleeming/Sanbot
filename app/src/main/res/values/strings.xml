@@ -20,6 +20,8 @@
     <string name="head_absolute_down">turn head absolute down</string>
     <string name="absolute_head_movement">Absolute head movements</string>
 
+    <string name="exampleImage">http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
     <string name="touch_activity">Touch Sensor Demo</string>
     <string name="touch_listener">Nothing has been touched yet...</string>
@@ -60,5 +62,13 @@
     <string name="start_projector">Start the projector</string>
     <string name="check_projector">Check if projector is turned on</string>
     <string name="close_projector">Close Projector</string>
+    <string name="wall">Project on the wall</string>
+    <string name="ceiling">Project on the ceiling</string>
+    <string name="projection_mode">What mode of projection should we use?</string>
+    <string name="close_mirror">Dont mirror objects</string>
+    <string name="all_mirror">Mirror all objects upside down and left to right</string>
+    <string name="mirror_mode">Set mirror mode</string>
+    <string name="ud_mirror">Mirror up-down</string>
+    <string name="lr_mirror">Mirror left-right</string>
 
 </resources>

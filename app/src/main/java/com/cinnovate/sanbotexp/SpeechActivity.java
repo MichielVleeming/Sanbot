@@ -49,7 +49,8 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
             speechManager.startSpeak(testText.getText().toString(), speakOption);
         }
         if (v.getId() == R.id.exampleText) {
-            speechManager.startSpeak("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", speakOption);
+            speechManager.startSpeak(getResources().getString(R.string.lorem_ipsum), speakOption);
         }
+
     }
 }
