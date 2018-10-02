@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/startProjector"
@@ -15,14 +15,86 @@
         android:id="@+id/checkProjector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/startProjector"
-        android:text="@string/check_projector" />
+        android:text="@string/check_projector"
+        app:layout_constraintTop_toBottomOf="@+id/startProjector" />
+
     <Button
         android:id="@+id/closeProjector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@+id/startProjector"
-        android:text="@string/close_projector" />
+        android:text="@string/close_projector"
+        app:layout_constraintLeft_toRightOf="@+id/startProjector" />
+
+    <TextView
+        android:id="@+id/projection_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/projection_mode"
+        app:layout_constraintTop_toBottomOf="@+id/checkProjector"/>
+
+    <RadioGroup
+        android:id="@+id/projector_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/projection_mode">
+
+        <RadioButton
+            android:id="@+id/radio_wall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/wall" />
+
+        <RadioButton
+            android:id="@+id/radio_ceiling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/ceiling" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/mirror_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mirror_mode"
+        app:layout_constraintTop_toBottomOf="@+id/projector_mode"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/mirror_mode">
+
+        <RadioButton
+            android:id="@+id/radio_close_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/close_mirror" />
+
+        <RadioButton
+            android:id="@+id/radio_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/all_mirror" />
+        <RadioButton
+            android:id="@+id/radio_LR_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/lr_mirror" />
+
+        <RadioButton
+            android:id="@+id/radio_UD_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/ud_mirror" />
+
+    </RadioGroup>
 
     <ImageView
         android:id="@+id/projectorImage"
@@ -31,7 +103,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

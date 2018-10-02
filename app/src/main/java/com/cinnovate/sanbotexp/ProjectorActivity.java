@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.bumptech.glide.Glide;
 import com.sanbot.opensdk.base.BindBaseActivity;
@@ -17,8 +18,6 @@ import com.sanbot.opensdk.function.unit.ProjectorManager;
 public class ProjectorActivity extends TopBaseActivity implements View.OnClickListener {
     ProjectorManager projectorManager;
     Button projectorOpen, closeProjector, checkProjector;
-    private int[] mirrorMode = {ProjectorManager.MIRROR_CLOSE, ProjectorManager.MIRROR_LR, ProjectorManager.MIRROR_UD, ProjectorManager.MIRROR_ALL};
-    private int[] mode = {ProjectorManager.MODE_WALL, ProjectorManager.MODE_CEILING};
     ImageView projectorImage;
 
     @Override
@@ -47,9 +46,6 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
         switch (v.getId()) {
 
             case R.id.startProjector:
-                projectorManager.setMode(ProjectorManager.MODE_WALL);
-                projectorManager.setMirror(ProjectorManager.MIRROR_CLOSE);
-                projectorManager.
                 projectorManager.switchProjector(true);
 
                 break;
@@ -58,9 +54,45 @@ public class ProjectorActivity extends TopBaseActivity implements View.OnClickLi
                 break;
             case R.id.checkProjector:
                 Glide.with(this)
-                        .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+                        .load("https://upload.wikimedia.org/wikipedia/commons/6/66/Android_robot.png")
                         .into(projectorImage);
                 projectorImage.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    public void onRadioButtonClicked(View v) {
+        boolean checked = ((RadioButton) v).isChecked();
+
+        switch (v.getId()) {
+            default:
+                projectorManager.setMirror(ProjectorManager.MIRROR_CLOSE);
+                projectorManager.setMode(ProjectorManager.MODE_WALL);
+                break;
+            case R.id.radio_wall:
+                if (checked)
+                    projectorManager.setMode(ProjectorManager.MODE_WALL);
+                break;
+            case R.id.radio_ceiling:
+                if (checked)
+                    projectorManager.setMode(ProjectorManager.MODE_CEILING);
+                break;
+            case R.id.radio_close_mirror:
+                if (checked)
+                    projectorManager.setMirror(ProjectorManager.MIRROR_CLOSE);
+                break;
+            case R.id.radio_mirror:
+                if (checked)
+                    projectorManager.setMirror(ProjectorManager.MIRROR_ALL);
+                break;
+            case R.id.radio_LR_mirror:
+                if (checked)
+                    projectorManager.setMirror(ProjectorManager.MIRROR_LR);
+                break;
+            case R.id.radio_UD_mirror:
+                if (checked)
+                    projectorManager.setMirror(ProjectorManager.MIRROR_UD);
+                break;
 
         }
     }

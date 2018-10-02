@@ -3,16 +3,22 @@ package com.cinnovate.sanbotexp;
 import android.media.AudioTrack;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
+import android.media.MediaPlayer;
+import android.net.rtp.AudioCodec;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import android.view.View;
 import android.widget.VideoView;
 
 import com.qihancloud.opensdk.function.unit.MediaManager;
 import com.sanbot.opensdk.base.BindBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.StreamOption;
+import com.sanbot.opensdk.function.beans.headmotion.AbsoluteAngleHeadMotion;
+import com.sanbot.opensdk.function.beans.headmotion.RelativeAngleHeadMotion;
+import com.sanbot.opensdk.function.unit.HeadMotionManager;
 import com.sanbot.opensdk.function.unit.interfaces.media.MediaStreamListener;
 
 import java.io.IOException;
@@ -20,13 +26,18 @@ import java.nio.ByteBuffer;
 
 public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Callback {
     VideoView videoView;
-    MediaCodec videoDecoder;
-    ByteBuffer[] videoInputBuffers;
+    MediaCodec videoDecoder, audioDecoder;
+    private MediaPlayer mPlayer = null;
+    private static String mFileName = null;
+    ByteBuffer[] videoInputBuffers, audioInputBuffers;
+    HeadMotionManager headMotionManager;
     final static String videoMimeType = "video/avc";
+    final static String audioMimeType = "PCM/WAVE";
     final String TAG = getClass().getName();
     AudioTrack audioTrack;
     Surface surface;
     MediaCodec.BufferInfo videoBufferInfo = new MediaCodec.BufferInfo();
+    MediaCodec.BufferInfo audioBufferInfo = new MediaCodec.BufferInfo();
     long decodeTimeout = 16000;
     int i = 0;
 
@@ -38,9 +49,12 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
         super.onCreate(savedInstanceState);
         onMainServiceConnected();
         setContentView(R.layout.camera_activity);
+
         videoView = findViewById(R.id.stream_video);
 
         mediaManager = (MediaManager) getUnitManager(FuncConstant.MEDIA_MANAGER);
+        headMotionManager = (HeadMotionManager) getUnitManager(FuncConstant.HEADMOTION_MANAGER);
+
 
         mediaManager.setMediaListener(new MediaStreamListener() {
             @Override
@@ -50,10 +64,58 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
 
             @Override
             public void getAudioStream(byte[] data) {
-
+//                drawAudioSample(ByteBuffer.wrap(data));
             }
         });
         videoView.getHolder().addCallback(this);
+
+    }
+
+//    private void drawAudioSample(ByteBuffer sampleData) {
+//        try {
+//            int inIndex = audioDecoder.dequeueInputBuffer(decodeTimeout);
+//            if (inIndex >= 0) {
+//                ByteBuffer buffer = audioInputBuffers[inIndex];
+//                int sampleSize = sampleData.limit();
+//                buffer.clear();
+//                buffer.put(sampleData);
+//                buffer.flip();
+//                audioDecoder.queueInputBuffer(inIndex,0,sampleSize,0,0);
+//            }
+//            int ret = audioDecoder.dequeueOutputBuffer(audioBufferInfo, decodeTimeout);
+//            if (ret < 0){
+//                onDecodingError(ret);
+//                return;
+//            }
+//            audioDecoder.releaseOutputBuffer(ret, true);
+//        } catch (Exception e) {
+//            Log.e("releaseOutputBuffer", "the releaseOutputBuffer failed : ", e);
+//        }
+//    }
+
+
+    public void drawVideoSample(ByteBuffer sampleData) {
+
+        try {
+            // put sample data
+            int inIndex = videoDecoder.dequeueInputBuffer(decodeTimeout);
+            if (inIndex >= 0) {
+                ByteBuffer buffer = videoInputBuffers[inIndex];
+                int sampleSize = sampleData.limit();
+                buffer.clear();
+                buffer.put(sampleData);
+                buffer.flip();
+                videoDecoder.queueInputBuffer(inIndex, 0, sampleSize, 0, 0);
+            }
+            int ret = videoDecoder.dequeueOutputBuffer(videoBufferInfo, decodeTimeout);
+            if (ret < 0) {
+                onDecodingError(ret);
+                return;
+            }
+            videoDecoder.releaseOutputBuffer(ret, true);
+        } catch (Exception e) {
+            Log.e("releaseOutputBuffer", "the releaseOutputBuffer failed : ", e);
+        }
     }
 
     @Override
@@ -61,7 +123,9 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
         surface = holder.getSurface();
         startDecoding(1280, 720);
         StreamOption streamOption = new StreamOption();
-        streamOption.setChannel(StreamOption.SUB_STREAM);
+        streamOption.setChannel(StreamOption.MAIN_STREAM);
+        streamOption.setDecodType(StreamOption.HARDWARE_DECODE);
+        streamOption.setJustIframe(false);
         String result = mediaManager.openStream(streamOption).getResult();
         Log.e("result", result);
 
@@ -83,31 +147,6 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
         super.onStop();
     }
 
-    public void drawVideoSample(ByteBuffer sampleData) {
-
-        try {
-            // put sample data
-            int inIndex = videoDecoder.dequeueInputBuffer(decodeTimeout);
-            if (inIndex >= 0) {
-                ByteBuffer buffer = videoInputBuffers[inIndex];
-                int sampleSize = sampleData.limit();
-                buffer.clear();
-                buffer.put(sampleData);
-                buffer.flip();
-                // Log.i("DecodeActivity", "" + buffer.toString());
-                videoDecoder.queueInputBuffer(inIndex, 0, sampleSize, 0, 0);
-            }
-            // output, 1 microseconds = 100,0000 / 1 second
-            int ret = videoDecoder.dequeueOutputBuffer(videoBufferInfo, decodeTimeout);
-            if (ret < 0) {
-                onDecodingError(ret);
-                return;
-            }
-            videoDecoder.releaseOutputBuffer(ret, true);
-        } catch (Exception e) {
-            Log.e("abc", "chinese", e);
-        }
-    }
 
     private boolean startDecoding(int width, int height) {
         try {
@@ -121,15 +160,20 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
 
             }
             // format
-            MediaFormat format = MediaFormat.createVideoFormat(
+            MediaFormat videoFormat = MediaFormat.createVideoFormat(
                     videoMimeType, width, height);
-            Log.i("abc", "" + format);
+            Log.i("abc", "" + videoFormat);
+//            MediaFormat audioFormat = MediaFormat.createAudioFormat(audioMimeType, 8000, 8);
 
             videoDecoder = MediaCodec.createDecoderByType(videoMimeType);
-            videoDecoder.configure(format, surface, null, 0);
+            audioDecoder = MediaCodec.createDecoderByType(videoMimeType);
+            videoDecoder.configure(videoFormat, surface, null, 0);
+//            audioDecoder.configure(audioFormat, surface, null, 0);
             videoDecoder.start();
+            audioDecoder.start();
 
             videoInputBuffers = videoDecoder.getInputBuffers();
+            audioInputBuffers = audioDecoder.getInputBuffers();
         } catch (IOException e) {
 
         } finally {
@@ -138,16 +182,11 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
         return true;
     }
 
-    @Override
-    protected void onMainServiceConnected() {
-
-    }
-
 
     private void onDecodingError(int index) {
         switch (index) {
             case MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED:
-                Log.e("abc", "onDecodingError: The output buffers have changed");
+                Log.e("INFO_OUTPUT_BUFFERS_CHANGED", "onDecodingError: The output buffers have changed");
                 // The output buffers have changed, the client must refer to the
                 // new
                 // set of output buffers returned by getOutputBuffers() from
@@ -157,14 +196,14 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
                 break;
 
             case MediaCodec.INFO_OUTPUT_FORMAT_CHANGED:
-                Log.d("abc", "New format: " + videoDecoder.getOutputFormat());
+                Log.d("INFO_FORMAT_CHANGED", "New format: " + videoDecoder.getOutputFormat());
                 // The output format has changed, subsequent data will follow
                 // the
                 // new format. getOutputFormat() returns the new format.
                 break;
 
             case MediaCodec.INFO_TRY_AGAIN_LATER:
-                Log.d("abc", "dequeueOutputBuffer timed out!");
+                Log.d("INFO_TRY_AGAIN_LATER", "dequeueOutputBuffer timed out!");
                 // If a non-negative timeout had been specified in the call to
                 // dequeueOutputBuffer(MediaCodec.BufferInfo, long), indicates
                 // that
@@ -186,4 +225,22 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
         videoInputBuffers = null;
     }
 
+    public void onCameraClick(View v) {
+        RelativeAngleHeadMotion relativeAngleHeadMotion;
+        switch (v.getId()) {
+            case R.id.head_left:
+                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_LEFT, 30);
+                headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
+                break;
+            case R.id.head_right:
+                relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_RIGHT, 30);
+                headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
+                break;
+        }
+    }
+
+    @Override
+    protected void onMainServiceConnected() {
+
+    }
 }
