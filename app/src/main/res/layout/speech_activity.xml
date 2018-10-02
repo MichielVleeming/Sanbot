@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <EditText
-        android:inputType="text"
         android:id="@+id/testText"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
-        android:hint="@string/editable_speech_text"/>
+        android:hint="@string/editable_speech_text"
+        android:inputType="text" />
+
     <Button
         android:id="@+id/startText"
-        app:layout_constraintTop_toBottomOf="@+id/testText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/test_text"/>
+        android:text="@string/test_text"
+        app:layout_constraintTop_toBottomOf="@+id/testText" />
+
     <Button
         android:id="@+id/exampleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/startText"
-        android:text="@string/trial_text"/>
+        android:text="@string/trial_text"
+        app:layout_constraintTop_toBottomOf="@+id/startText" />
+
+    <Button
+        android:id="@+id/sleepSpeech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sleep_speech"
+        app:layout_constraintTop_toBottomOf="@+id/exampleText" />
+
+    <Button
+        android:id="@+id/awakeSpeech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/awake_speech"
+        app:layout_constraintTop_toBottomOf="@+id/sleepSpeech" />
+
+    <TextView
+        android:id="@+id/speakStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/head_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

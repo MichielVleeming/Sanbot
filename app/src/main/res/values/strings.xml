@@ -70,5 +70,7 @@
     <string name="mirror_mode">Set mirror mode</string>
     <string name="ud_mirror">Mirror up-down</string>
     <string name="lr_mirror">Mirror left-right</string>
+    <string name="awake_speech">Awake</string>
+    <string name="sleep_speech">sleep</string>
 
 </resources>
