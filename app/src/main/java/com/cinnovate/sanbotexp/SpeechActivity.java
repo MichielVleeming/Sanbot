@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.SpeakOption;
+import com.sanbot.opensdk.function.beans.speech.Grammar;
 import com.sanbot.opensdk.function.beans.speech.SpeakStatus;
 import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
 import com.sanbot.opensdk.function.unit.SpeechManager;
 import com.sanbot.opensdk.function.unit.WheelMotionManager;
+import com.sanbot.opensdk.function.unit.interfaces.speech.RecognizeListener;
 import com.sanbot.opensdk.function.unit.interfaces.speech.SpeakListener;
 import com.sanbot.opensdk.function.unit.interfaces.speech.SpeechListener;
 import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
@@ -43,12 +45,14 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
         Button awakeSpeech = findViewById(R.id.awakeSpeech);
         final TextView speakPercentage = findViewById(R.id.speakStatus);
         testText = findViewById(R.id.testText);
+        final TextView spokenText = findViewById(R.id.spokenText);
         SpeakOption speakOption = new SpeakOption();
         speakOption.setSpeed(5);
         startText.setOnClickListener(this);
         loremText.setOnClickListener(this);
         sleepSpeech.setOnClickListener(this);
         awakeSpeech.setOnClickListener(this);
+
 
         speechManager.setOnSpeechListener(new SpeakListener() {
             @Override
@@ -57,6 +61,38 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
             }
         });
 
+        speechManager.setOnSpeechListener(new RecognizeListener() {
+            @Override
+            public boolean onRecognizeResult(Grammar grammar) {
+                Log.e("Spoken text: ", "onRecognizeResult: "+grammar.getText());
+                spokenText.setText(grammar.getText());
+                if (grammar.getTopic().equals("test_topic")) {
+                    speechManager.startSpeak("Test Topic");
+                    return true;
+                }
+                return true;
+            }
+
+            @Override
+            public void onRecognizeVolume(int i) {
+
+            }
+
+            @Override
+            public void onStartRecognize() {
+                Log.i("Cris", "onStartRecognize: ");
+            }
+
+            @Override
+            public void onStopRecognize() {
+
+            }
+
+            @Override
+            public void onError(int i, int i1) {
+
+            }
+        });
     }
 
     @Override
@@ -78,4 +114,5 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
 
         }
     }
+
 }

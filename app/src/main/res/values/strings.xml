@@ -72,5 +72,6 @@
     <string name="lr_mirror">Mirror left-right</string>
     <string name="awake_speech">Awake</string>
     <string name="sleep_speech">sleep</string>
+    <string name="spokenText">This will show your spoken text</string>
 
 </resources>

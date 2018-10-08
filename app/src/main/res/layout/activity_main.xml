@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+            style="@style/buttonStyle"
 
             android:text="@string/wheel_activity_starter" />
 
@@ -27,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
-
+            style="@style/buttonStyle"
             android:text="@string/lights_activity" />
     </LinearLayout>
 
@@ -43,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+            style="@style/buttonStyle"
             android:text="@string/head_activity" />
 
         <Button
@@ -50,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+            style="@style/buttonStyle"
             android:text="@string/touch_activity" />
     </LinearLayout>
 
@@ -65,6 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+
+            style="@style/buttonStyle"
             android:text="@string/speech_activity" />
 
         <Button
@@ -72,6 +77,8 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+
+            style="@style/buttonStyle"
             android:text="@string/arm_activity" />
     </LinearLayout>
     <LinearLayout
@@ -86,13 +93,16 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+
+            style="@style/buttonStyle"
             android:text="@string/sound_activity" />
 
         <Button
             android:id="@+id/cameraStarter"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:padding="16dp"
+            style="@style/buttonStyle"
             android:text="@string/camera_activity" />
     </LinearLayout>
     <LinearLayout
@@ -107,6 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+            style="@style/buttonStyle"
             android:text="@string/pirStarter" />
 
         <Button
@@ -114,6 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:padding="16dp"
+            style="@style/buttonStyle"
             android:text="@string/projector_activity" />
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

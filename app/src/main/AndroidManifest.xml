@@ -3,13 +3,13 @@
     package="com.cinnovate.sanbotexp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -20,67 +20,51 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WheelsActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".LightsActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".HeadMovementActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".TouchSensorActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".WheelsActivity" />
+
+        <activity android:name=".LightsActivity" />
+
+        <activity android:name=".HeadMovementActivity" />
+
+        <activity android:name=".TouchSensorActivity" />
+
         <activity android:name=".SpeechActivity">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".ArmMovementActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".SoundSourceActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".CameraActivity"
+        <activity android:name=".ArmMovementActivity" />
+
+        <activity android:name=".SoundSourceActivity" />
+
+        <activity
+            android:name=".CameraActivity"
             android:exported="true"
-            android:hardwareAccelerated="true"
-            >
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".PirActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ProjectorActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:hardwareAccelerated="true" />
+
+
+        <activity android:name=".PirActivity" />
+
+        <activity android:name=".ProjectorActivity" />
+
+        <provider
+            android:name="com.sanbot.opensdk.utils.GrammarProvider"
+
+            android:authorities="com.qihancloud.librarydemo.grammar"
+            android:exported="true" />
     </application>
 
 </manifest>
