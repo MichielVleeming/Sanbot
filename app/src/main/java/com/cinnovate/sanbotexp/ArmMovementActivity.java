@@ -38,7 +38,6 @@ public class ArmMovementActivity extends MainActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch(v.getId()){
             case R.id.moveHandsUp:
                 NoAngleHandMotion noAngleHandMotion = new NoAngleHandMotion(NoAngleHandMotion.PART_BOTH,

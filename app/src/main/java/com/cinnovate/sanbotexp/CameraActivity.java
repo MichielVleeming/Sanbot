@@ -26,18 +26,17 @@ import java.nio.ByteBuffer;
 
 public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Callback {
     VideoView videoView;
-    MediaCodec videoDecoder, audioDecoder;
+    MediaCodec videoDecoder;
     private MediaPlayer mPlayer = null;
     private static String mFileName = null;
-    ByteBuffer[] videoInputBuffers, audioInputBuffers;
+    ByteBuffer[] videoInputBuffers;
     HeadMotionManager headMotionManager;
     final static String videoMimeType = "video/avc";
-    final static String audioMimeType = "PCM/WAVE";
     final String TAG = getClass().getName();
     AudioTrack audioTrack;
+    MediaCodec mediaCodec;
     Surface surface;
     MediaCodec.BufferInfo videoBufferInfo = new MediaCodec.BufferInfo();
-    MediaCodec.BufferInfo audioBufferInfo = new MediaCodec.BufferInfo();
     long decodeTimeout = 16000;
     int i = 0;
 
@@ -64,34 +63,11 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
 
             @Override
             public void getAudioStream(byte[] data) {
-//                drawAudioSample(ByteBuffer.wrap(data));
             }
         });
         videoView.getHolder().addCallback(this);
 
     }
-
-//    private void drawAudioSample(ByteBuffer sampleData) {
-//        try {
-//            int inIndex = audioDecoder.dequeueInputBuffer(decodeTimeout);
-//            if (inIndex >= 0) {
-//                ByteBuffer buffer = audioInputBuffers[inIndex];
-//                int sampleSize = sampleData.limit();
-//                buffer.clear();
-//                buffer.put(sampleData);
-//                buffer.flip();
-//                audioDecoder.queueInputBuffer(inIndex,0,sampleSize,0,0);
-//            }
-//            int ret = audioDecoder.dequeueOutputBuffer(audioBufferInfo, decodeTimeout);
-//            if (ret < 0){
-//                onDecodingError(ret);
-//                return;
-//            }
-//            audioDecoder.releaseOutputBuffer(ret, true);
-//        } catch (Exception e) {
-//            Log.e("releaseOutputBuffer", "the releaseOutputBuffer failed : ", e);
-//        }
-//    }
 
 
     public void drawVideoSample(ByteBuffer sampleData) {
@@ -163,17 +139,12 @@ public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Ca
             MediaFormat videoFormat = MediaFormat.createVideoFormat(
                     videoMimeType, width, height);
             Log.i("abc", "" + videoFormat);
-//            MediaFormat audioFormat = MediaFormat.createAudioFormat(audioMimeType, 8000, 8);
 
             videoDecoder = MediaCodec.createDecoderByType(videoMimeType);
-            audioDecoder = MediaCodec.createDecoderByType(videoMimeType);
             videoDecoder.configure(videoFormat, surface, null, 0);
-//            audioDecoder.configure(audioFormat, surface, null, 0);
             videoDecoder.start();
-            audioDecoder.start();
 
             videoInputBuffers = videoDecoder.getInputBuffers();
-            audioInputBuffers = audioDecoder.getInputBuffers();
         } catch (IOException e) {
 
         } finally {
