@@ -20,7 +20,6 @@
             android:layout_height="48dp"
             android:padding="16dp"
             style="@style/buttonStyle"
-
             android:text="@string/wheel_activity_starter" />
 
         <Button
@@ -127,5 +126,28 @@
             android:padding="16dp"
             style="@style/buttonStyle"
             android:text="@string/projector_activity" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/emotionStarter"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:padding="16dp"
+            style="@style/buttonStyle"
+            android:text="@string/emotion_activity" />
+
+        <!--<Button-->
+            <!--android:id="@+id/projectorStarter"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:padding="16dp"-->
+            <!--style="@style/buttonStyle"-->
+            <!--android:text="@string/projector_activity" />-->
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

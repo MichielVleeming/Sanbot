@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/madEmotionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/mad_emotion"
+        android:onClick="onEmotionClick"/>
+    <Button
+        android:id="@+id/shyEmotionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/madEmotionButton"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/shy_emotion"
+        android:onClick="onEmotionClick"/>
+    <Button
+        android:id="@+id/smileEmotionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@id/madEmotionButton"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/smile_emotion"
+        android:onClick="onEmotionClick"/>
+</android.support.constraint.ConstraintLayout>

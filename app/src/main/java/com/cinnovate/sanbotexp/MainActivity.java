@@ -63,7 +63,7 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
     Button lightActivityStarter, wheelActivityStarter,
             headMovementActivityStarter, touchSensorActivityStarter,
             speechActivityStarter, armActivityStarter, soundSourceStarter,
-            cameraStarter, pirStarter, projectorStarter;
+            cameraStarter, pirStarter, projectorStarter, emotionStarter;
     Intent i;
 
     @Override
@@ -89,6 +89,7 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         cameraStarter = findViewById(R.id.cameraStarter);
         pirStarter = findViewById(R.id.pirStarter);
         projectorStarter = findViewById(R.id.projectorStarter);
+        emotionStarter = findViewById(R.id.emotionStarter);
 
         wheelActivityStarter.setOnClickListener(this);
         lightActivityStarter.setOnClickListener(this);
@@ -100,6 +101,7 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         cameraStarter.setOnClickListener(this);
         pirStarter.setOnClickListener(this);
         projectorStarter.setOnClickListener(this);
+        emotionStarter.setOnClickListener(this);
     }
 
     @Override
@@ -135,6 +137,9 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
                 break;
             case R.id.projectorStarter:
                 i = new Intent(this, ProjectorActivity.class);
+                break;
+            case R.id.emotionStarter:
+                i = new Intent(this, EmotionActivity.class);
                 break;
         }
         startActivity(i);
