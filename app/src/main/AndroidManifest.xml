@@ -36,7 +36,7 @@
         <activity android:name=".HeadMovementActivity" />
 
         <activity android:name=".TouchSensorActivity" />
-        <activity android:name=".EmotionActivity"/>
+        <activity android:name=".EmotionActivity" />
 
         <activity android:name=".SpeechActivity">
             <meta-data

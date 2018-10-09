@@ -12,8 +12,9 @@ import com.sanbot.opensdk.function.unit.HardWareManager;
 public class LightsActivity extends MainActivity implements View.OnClickListener {
     HardWareManager hardWareManager;
     Button whiteLightOn, turnLedOff, whiteLightBrighter,
-    allLedOn, turnHeadLedOn;
+            allLedOn, turnHeadLedOn;
     int i;
+
     @Override
     protected void onMainServiceConnected() {
 
@@ -52,8 +53,8 @@ public class LightsActivity extends MainActivity implements View.OnClickListener
                 break;
             case R.id.whiteLightBrighter:
                 hardWareManager.setWhiteLightLevel(i);
-                if(i == 3){
-                    i=0;
+                if (i == 3) {
+                    i = 0;
                 }
                 i++;
                 break;

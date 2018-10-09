@@ -3,14 +3,10 @@ package com.cinnovate.sanbotexp;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.sanbot.opensdk.beans.FuncConstant;
-import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
 import com.sanbot.opensdk.function.unit.HardWareManager;
-import com.sanbot.opensdk.function.unit.WheelMotionManager;
-import com.sanbot.opensdk.function.unit.interfaces.hardware.HardWareListener;
 import com.sanbot.opensdk.function.unit.interfaces.hardware.TouchSensorListener;
 
 public class TouchSensorActivity extends MainActivity implements View.OnClickListener {
@@ -47,7 +43,7 @@ public class TouchSensorActivity extends MainActivity implements View.OnClickLis
                 if (i == 4) {
                     touchListener.setText("Right Chest was touched");
                 }
-                if (i == 5){
+                if (i == 5) {
                     touchListener.setText("Left side of back of head was touched");
                 }
                 if (i == 6) {

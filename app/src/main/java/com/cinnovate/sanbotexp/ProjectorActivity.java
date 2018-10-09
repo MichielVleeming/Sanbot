@@ -1,7 +1,6 @@
 package com.cinnovate.sanbotexp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -9,10 +8,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.bumptech.glide.Glide;
-import com.sanbot.opensdk.base.BindBaseActivity;
 import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
-import com.sanbot.opensdk.beans.OperationResult;
 import com.sanbot.opensdk.function.unit.ProjectorManager;
 
 public class ProjectorActivity extends TopBaseActivity implements View.OnClickListener {

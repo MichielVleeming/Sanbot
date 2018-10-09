@@ -14,6 +14,7 @@ import com.sanbot.opensdk.function.unit.interfaces.hardware.PIRListener;
 public class PirActivity extends MainActivity implements View.OnClickListener {
     TextView pirValue;
     HardWareManager hardWareManager;
+
     @Override
     protected void onMainServiceConnected() {
 
@@ -40,11 +41,12 @@ public class PirActivity extends MainActivity implements View.OnClickListener {
             }
         });
     }
+
     private void setPirDistanceListener() {
         hardWareManager.setOnHareWareListener(new InfrareListener() {
             @Override
             public void infrareDistance(int part, int distance) {
-                    Log.d("DistanceMeasure","The part is: " + part + "Distance is: " + distance);
+                Log.d("DistanceMeasure", "The part is: " + part + "Distance is: " + distance);
             }
         });
     }

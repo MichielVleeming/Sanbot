@@ -9,14 +9,12 @@ import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.headmotion.AbsoluteAngleHeadMotion;
 import com.sanbot.opensdk.function.beans.headmotion.LocateAbsoluteAngleHeadMotion;
 import com.sanbot.opensdk.function.beans.headmotion.RelativeAngleHeadMotion;
-import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
 import com.sanbot.opensdk.function.unit.HeadMotionManager;
-import com.sanbot.opensdk.function.unit.WheelMotionManager;
 
 public class HeadMovementActivity extends MainActivity implements View.OnClickListener {
     HeadMotionManager headMotionManager;
     Button headLeft, headRight, headUp, headDown, headReset,
-    headAbsoluteLeft, headAbsoluteRight, headAbsoluteUp, headAbsoluteDown;
+            headAbsoluteLeft, headAbsoluteRight, headAbsoluteUp, headAbsoluteDown;
 
     @Override
     protected void onMainServiceConnected() {
@@ -59,7 +57,7 @@ public class HeadMovementActivity extends MainActivity implements View.OnClickLi
     public void onClick(View v) {
         RelativeAngleHeadMotion relativeAngleHeadMotion;
         AbsoluteAngleHeadMotion absoluteAngleHeadMotion;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.moveHeadLeft:
                 relativeAngleHeadMotion = new RelativeAngleHeadMotion(RelativeAngleHeadMotion.ACTION_LEFT, 30);
                 headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
@@ -77,19 +75,19 @@ public class HeadMovementActivity extends MainActivity implements View.OnClickLi
                 headMotionManager.doRelativeAngleMotion(relativeAngleHeadMotion);
                 break;
             case R.id.moveHeadAbsoluteLeft:
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL,25);
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL, 25);
                 headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
                 break;
             case R.id.moveHeadAbsoluteRight:
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL,160);
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_HORIZONTAL, 160);
                 headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
                 break;
             case R.id.moveHeadAbsoluteUp:
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL,25);
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL, 25);
                 headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
                 break;
             case R.id.moveHeadAbsoluteDown:
-                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL,10);
+                absoluteAngleHeadMotion = new AbsoluteAngleHeadMotion(AbsoluteAngleHeadMotion.ACTION_VERTICAL, 10);
                 headMotionManager.doAbsoluteAngleMotion(absoluteAngleHeadMotion);
                 break;
             case R.id.resetHead:

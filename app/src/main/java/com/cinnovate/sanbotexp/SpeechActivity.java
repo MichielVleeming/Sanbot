@@ -11,14 +11,8 @@ import android.widget.TextView;
 import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.SpeakOption;
 import com.sanbot.opensdk.function.beans.speech.Grammar;
-import com.sanbot.opensdk.function.beans.speech.SpeakStatus;
-import com.sanbot.opensdk.function.beans.wheelmotion.DistanceWheelMotion;
 import com.sanbot.opensdk.function.unit.SpeechManager;
-import com.sanbot.opensdk.function.unit.WheelMotionManager;
 import com.sanbot.opensdk.function.unit.interfaces.speech.RecognizeListener;
-import com.sanbot.opensdk.function.unit.interfaces.speech.SpeakListener;
-import com.sanbot.opensdk.function.unit.interfaces.speech.SpeechListener;
-import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 
 public class SpeechActivity extends MainActivity implements View.OnClickListener {
     SpeechManager speechManager;
@@ -55,7 +49,7 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
         awakeSpeech.setOnClickListener(this);
 
 
-       setListener();
+        setListener();
     }
 
     private void setListener() {

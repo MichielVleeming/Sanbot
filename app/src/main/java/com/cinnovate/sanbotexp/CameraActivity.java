@@ -1,10 +1,7 @@
 package com.cinnovate.sanbotexp;
 
-import android.media.AudioTrack;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
-import android.media.MediaPlayer;
-import android.net.rtp.AudioCodec;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Surface;
@@ -16,7 +13,6 @@ import com.qihancloud.opensdk.function.unit.MediaManager;
 import com.sanbot.opensdk.base.BindBaseActivity;
 import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.StreamOption;
-import com.sanbot.opensdk.function.beans.headmotion.AbsoluteAngleHeadMotion;
 import com.sanbot.opensdk.function.beans.headmotion.RelativeAngleHeadMotion;
 import com.sanbot.opensdk.function.unit.HeadMotionManager;
 import com.sanbot.opensdk.function.unit.interfaces.media.MediaStreamListener;
@@ -27,14 +23,10 @@ import java.nio.ByteBuffer;
 public class CameraActivity extends BindBaseActivity implements SurfaceHolder.Callback {
     VideoView videoView;
     MediaCodec videoDecoder;
-    private MediaPlayer mPlayer = null;
-    private static String mFileName = null;
     ByteBuffer[] videoInputBuffers;
     HeadMotionManager headMotionManager;
     final static String videoMimeType = "video/avc";
     final String TAG = getClass().getName();
-    AudioTrack audioTrack;
-    MediaCodec mediaCodec;
     Surface surface;
     MediaCodec.BufferInfo videoBufferInfo = new MediaCodec.BufferInfo();
     long decodeTimeout = 16000;

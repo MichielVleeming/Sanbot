@@ -20,11 +20,12 @@
             android:id="@+id/turnLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/turn_left"/>
+            android:text="@string/turn_left" />
+
         <Button
             android:id="@+id/noAngleWheelMotion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_angle_wheel_motion"/>
+            android:text="@string/no_angle_wheel_motion" />
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

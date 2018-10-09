@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/all_led_on" />
+
         <Button
             android:id="@+id/turnOnHead"
             android:layout_width="wrap_content"
