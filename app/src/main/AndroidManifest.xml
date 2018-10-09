@@ -36,6 +36,7 @@
         <activity android:name=".HeadMovementActivity" />
 
         <activity android:name=".TouchSensorActivity" />
+        <activity android:name=".EmotionActivity"/>
 
         <activity android:name=".SpeechActivity">
             <meta-data
@@ -60,10 +61,11 @@
 
         <activity android:name=".ProjectorActivity" />
 
+
         <provider
             android:name="com.sanbot.opensdk.utils.GrammarProvider"
 
-            android:authorities="com.qihancloud.librarydemo.grammar"
+            android:authorities="com.qihancloud.sanbotexp.grammar"
             android:exported="true" />
     </application>
 

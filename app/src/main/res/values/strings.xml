@@ -73,5 +73,9 @@
     <string name="awake_speech">Awake</string>
     <string name="sleep_speech">sleep</string>
     <string name="spokenText">This will show your spoken text</string>
+    <string name="emotion_activity">Emotion Demo</string>
+    <string name="mad_emotion">Mad</string>
+    <string name="shy_emotion">shy</string>
+    <string name="smile_emotion">smile</string>
 
 </resources>

@@ -23,7 +23,7 @@ import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 public class SpeechActivity extends MainActivity implements View.OnClickListener {
     SpeechManager speechManager;
     EditText testText;
-
+    TextView spokenText, speakPercentage;
 
     @Override
     protected void onMainServiceConnected() {
@@ -43,32 +43,31 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
         Button loremText = findViewById(R.id.exampleText);
         Button sleepSpeech = findViewById(R.id.sleepSpeech);
         Button awakeSpeech = findViewById(R.id.awakeSpeech);
-        final TextView speakPercentage = findViewById(R.id.speakStatus);
+        speakPercentage = findViewById(R.id.speakStatus);
         testText = findViewById(R.id.testText);
-        final TextView spokenText = findViewById(R.id.spokenText);
+        spokenText = findViewById(R.id.spokenText);
         SpeakOption speakOption = new SpeakOption();
         speakOption.setSpeed(5);
+        speakOption.setLanguageType(SpeakOption.LAG_ENGLISH_US);
         startText.setOnClickListener(this);
         loremText.setOnClickListener(this);
         sleepSpeech.setOnClickListener(this);
         awakeSpeech.setOnClickListener(this);
 
 
-        speechManager.setOnSpeechListener(new SpeakListener() {
-            @Override
-            public void onSpeakStatus(SpeakStatus speakStatus) {
-                Log.e("SpeechListener", "onSpeakStatus: " + speakStatus.getProgress());
-            }
-        });
+       setListener();
+    }
+
+    private void setListener() {
+
 
         speechManager.setOnSpeechListener(new RecognizeListener() {
             @Override
             public boolean onRecognizeResult(Grammar grammar) {
-                Log.e("Spoken text: ", "onRecognizeResult: "+grammar.getText());
+                Log.i("Content Recognized: ", grammar.getText());
                 spokenText.setText(grammar.getText());
-                if (grammar.getTopic().equals("test_topic")) {
-                    speechManager.startSpeak("Test Topic");
-                    return true;
+                if (grammar.getTopic().equals("test")) {
+                    speechManager.startSpeak("Hi there");
                 }
                 return true;
             }
@@ -80,7 +79,7 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
 
             @Override
             public void onStartRecognize() {
-                Log.i("Cris", "onStartRecognize: ");
+                spokenText.setText("Recognizing speech");
             }
 
             @Override
