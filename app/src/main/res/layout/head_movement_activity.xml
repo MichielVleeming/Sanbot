@@ -29,24 +29,28 @@
             android:id="@+id/moveHeadRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_right" />
 
         <Button
             android:id="@+id/moveHeadLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_left" />
 
         <Button
             android:id="@+id/moveHeadUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_up" />
 
         <Button
             android:id="@+id/moveHeadDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_down" />
     </LinearLayout>
 
@@ -61,6 +65,7 @@
             android:id="@+id/resetHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_center" />
     </LinearLayout>
 
@@ -90,24 +95,28 @@
             android:id="@+id/moveHeadAbsoluteRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_right" />
 
         <Button
             android:id="@+id/moveHeadAbsoluteLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_left" />
 
         <Button
             android:id="@+id/moveHeadAbsoluteUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_up" />
 
         <Button
             android:id="@+id/moveHeadAbsoluteDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onHeadClick"
             android:text="@string/head_down" />
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

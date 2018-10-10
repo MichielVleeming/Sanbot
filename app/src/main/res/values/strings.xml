@@ -20,7 +20,6 @@
     <string name="head_absolute_down">turn head absolute down</string>
     <string name="absolute_head_movement">Absolute head movements</string>
 
-    <string name="exampleImage">http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
     <string name="touch_activity">Touch Sensor Demo</string>
@@ -74,8 +73,26 @@
     <string name="sleep_speech">sleep</string>
     <string name="spokenText">This will show your spoken text</string>
     <string name="emotion_activity">Emotion Demo</string>
+
     <string name="mad_emotion">Mad</string>
     <string name="shy_emotion">shy</string>
     <string name="smile_emotion">smile</string>
+
+    <string name="right_chin">Right chin</string>
+    <string name="touched">was touched</string>
+    <string name="left_chin">left chin</string>
+    <string name="left_chest">Left chest</string>
+    <string name="right_chest">Right chest</string>
+    <string name="left_wing">Left wing</string>
+    <string name="left_chest_back">Left side back chest</string>
+    <string name="right_chest_back">Right side chest back</string>
+    <string name="left_back">Left back</string>
+    <string name="right_back">Right back</string>
+    <string name="right_wing">Right wing</string>
+    <string name="center_head">Center of head</string>
+    <string name="right_head">right head</string>
+    <string name="left_head">left head</string>
+    <string name="pir_front">Someone is infront of Sanbot</string>
+    <string name="pir_back">Someone is behind Sanbot</string>
 
 </resources>

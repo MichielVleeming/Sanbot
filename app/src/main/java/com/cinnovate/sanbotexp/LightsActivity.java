@@ -9,10 +9,8 @@ import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.LED;
 import com.sanbot.opensdk.function.unit.HardWareManager;
 
-public class LightsActivity extends MainActivity implements View.OnClickListener {
+public class LightsActivity extends MainActivity {
     HardWareManager hardWareManager;
-    Button whiteLightOn, turnLedOff, whiteLightBrighter,
-            allLedOn, turnHeadLedOn;
     int i;
 
     @Override
@@ -29,23 +27,12 @@ public class LightsActivity extends MainActivity implements View.OnClickListener
         onMainServiceConnected();
         setContentView(R.layout.light_activity);
         hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
-
-        whiteLightOn = findViewById(R.id.whiteLightOn);
-        whiteLightOn.setOnClickListener(this);
-        whiteLightBrighter = findViewById(R.id.whiteLightBrighter);
-        whiteLightBrighter.setOnClickListener(this);
-        allLedOn = findViewById(R.id.turnOnAllLed);
-        allLedOn.setOnClickListener(this);
-        turnLedOff = findViewById(R.id.turnLedsOff);
-        turnLedOff.setOnClickListener(this);
-        turnHeadLedOn = findViewById(R.id.turnOnHead);
-        turnHeadLedOn.setOnClickListener(this);
         i = 1;
         hardWareManager.setWhiteLightLevel(i);
     }
 
-    @Override
-    public void onClick(View v) {
+
+    public void onLightClick(View v) {
         int x = v.getId();
         switch (x) {
             case R.id.whiteLightOn:

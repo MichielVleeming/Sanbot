@@ -15,12 +15,14 @@
             android:id="@+id/whiteLightOn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onLightClick"
             android:text="@string/white_light_on" />
 
         <Button
             android:id="@+id/whiteLightBrighter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onLightClick"
             android:text="@string/white_light_brighter" />
     </LinearLayout>
 
@@ -35,12 +37,14 @@
             android:id="@+id/turnOnAllLed"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onLightClick"
             android:text="@string/all_led_on" />
 
         <Button
             android:id="@+id/turnOnHead"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onLightClick"
             android:text="@string/turn_head_led_on" />
     </LinearLayout>
 
@@ -55,6 +59,7 @@
             android:id="@+id/turnLedsOff"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onLightClick"
             android:text="@string/led_off" />
     </LinearLayout>
 

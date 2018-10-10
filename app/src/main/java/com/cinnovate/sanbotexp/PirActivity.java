@@ -11,7 +11,7 @@ import com.sanbot.opensdk.function.unit.HardWareManager;
 import com.sanbot.opensdk.function.unit.interfaces.hardware.InfrareListener;
 import com.sanbot.opensdk.function.unit.interfaces.hardware.PIRListener;
 
-public class PirActivity extends MainActivity implements View.OnClickListener {
+public class PirActivity extends MainActivity {
     TextView pirValue;
     HardWareManager hardWareManager;
 
@@ -37,7 +37,7 @@ public class PirActivity extends MainActivity implements View.OnClickListener {
         hardWareManager.setOnHareWareListener(new PIRListener() {
             @Override
             public void onPIRCheckResult(boolean b, int part) {
-                pirValue.setText((part == 1 ? "Someone is infront of Sanbot" : "Someone is behind Sanbot"));
+                pirValue.setText((part == 1 ? getResources().getString(R.string.pir_front) : getResources().getString(R.string.pir_back)));
             }
         });
     }

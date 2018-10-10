@@ -4,17 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.function.beans.SpeakOption;
 
-public class MainActivity extends TopBaseActivity implements View.OnClickListener {
+public class MainActivity extends TopBaseActivity {
     SpeakOption speakOption = new SpeakOption();
-    Button lightActivityStarter, wheelActivityStarter,
-            headMovementActivityStarter, touchSensorActivityStarter,
-            speechActivityStarter, armActivityStarter, soundSourceStarter,
-            cameraStarter, pirStarter, projectorStarter, emotionStarter;
     Intent i;
 
     @Override
@@ -29,34 +24,11 @@ public class MainActivity extends TopBaseActivity implements View.OnClickListene
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         super.onCreate(savedInstanceState);
         onMainServiceConnected();
-        setContentView(R.layout.activity_main);
-        wheelActivityStarter = findViewById(R.id.wheelActivityStarter);
-        lightActivityStarter = findViewById(R.id.lightsActivityStarter);
-        headMovementActivityStarter = findViewById(R.id.headMovementActivityStarter);
-        touchSensorActivityStarter = findViewById(R.id.touchSensorActivityStarter);
-        speechActivityStarter = findViewById(R.id.speechActivityStarter);
-        armActivityStarter = findViewById(R.id.armMovementActivityStarter);
-        soundSourceStarter = findViewById(R.id.soundSourceStarter);
-        cameraStarter = findViewById(R.id.cameraStarter);
-        pirStarter = findViewById(R.id.pirStarter);
-        projectorStarter = findViewById(R.id.projectorStarter);
-        emotionStarter = findViewById(R.id.emotionStarter);
+        setBodyView(R.layout.activity_main);
 
-        wheelActivityStarter.setOnClickListener(this);
-        lightActivityStarter.setOnClickListener(this);
-        headMovementActivityStarter.setOnClickListener(this);
-        touchSensorActivityStarter.setOnClickListener(this);
-        speechActivityStarter.setOnClickListener(this);
-        armActivityStarter.setOnClickListener(this);
-        soundSourceStarter.setOnClickListener(this);
-        cameraStarter.setOnClickListener(this);
-        pirStarter.setOnClickListener(this);
-        projectorStarter.setOnClickListener(this);
-        emotionStarter.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
+    public void onMainClick(View v) {
         int viewId = v.getId();
         switch (viewId) {
             case R.id.wheelActivityStarter:

@@ -15,18 +15,20 @@
 
         <Button
             android:id="@+id/wheelActivityStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/wheel_activity_starter" />
 
         <Button
             android:id="@+id/lightsActivityStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/lights_activity" />
     </LinearLayout>
 
@@ -39,18 +41,20 @@
 
         <Button
             android:id="@+id/headMovementActivityStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/head_activity" />
 
         <Button
             android:id="@+id/touchSensorActivityStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/touch_activity" />
     </LinearLayout>
 
@@ -63,20 +67,21 @@
 
         <Button
             android:id="@+id/speechActivityStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:padding="16dp"
+            android:onClick="onMainClick"
 
-            style="@style/buttonStyle"
+            android:padding="16dp"
             android:text="@string/speech_activity" />
 
         <Button
             android:id="@+id/armMovementActivityStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-
-            style="@style/buttonStyle"
             android:text="@string/arm_activity" />
     </LinearLayout>
 
@@ -89,19 +94,20 @@
 
         <Button
             android:id="@+id/soundSourceStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-
-            style="@style/buttonStyle"
             android:text="@string/sound_activity" />
 
         <Button
             android:id="@+id/cameraStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/camera_activity" />
     </LinearLayout>
 
@@ -114,18 +120,20 @@
 
         <Button
             android:id="@+id/pirStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/pirStarter" />
 
         <Button
             android:id="@+id/projectorStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/projector_activity" />
     </LinearLayout>
 
@@ -138,10 +146,11 @@
 
         <Button
             android:id="@+id/emotionStarter"
+            style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:onClick="onMainClick"
             android:padding="16dp"
-            style="@style/buttonStyle"
             android:text="@string/emotion_activity" />
 
         <!--<Button-->

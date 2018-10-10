@@ -9,7 +9,7 @@ import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.unit.HardWareManager;
 import com.sanbot.opensdk.function.unit.interfaces.hardware.TouchSensorListener;
 
-public class TouchSensorActivity extends MainActivity implements View.OnClickListener {
+public class TouchSensorActivity extends MainActivity {
     HardWareManager hardWareManager;
     TextView touchListener;
 
@@ -32,43 +32,43 @@ public class TouchSensorActivity extends MainActivity implements View.OnClickLis
             @Override
             public void onTouch(int i) {
                 if (i == 1) {
-                    touchListener.setText("Right Chin was touched");
+                    touchListener.setText(R.string.right_chin);
                 }
                 if (i == 2) {
-                    touchListener.setText("Left Chin was touched");
+                    touchListener.setText(R.string.left_chin);
                 }
                 if (i == 3) {
-                    touchListener.setText("Left Chest was touched");
+                    touchListener.setText(R.string.left_chest);
                 }
                 if (i == 4) {
-                    touchListener.setText("Right Chest was touched");
+                    touchListener.setText(R.string.right_chest);
                 }
                 if (i == 5) {
-                    touchListener.setText("Left side of back of head was touched");
+                    touchListener.setText(R.string.left_chest_back);
                 }
                 if (i == 6) {
-                    touchListener.setText("Right side of back of head was touched");
+                    touchListener.setText(R.string.right_chest_back);
                 }
                 if (i == 7) {
-                    touchListener.setText("Left side of back was touched");
+                    touchListener.setText(R.string.left_back);
                 }
                 if (i == 8) {
-                    touchListener.setText("Right side of back was touched");
+                    touchListener.setText(R.string.right_back);
                 }
                 if (i == 9) {
-                    touchListener.setText("Left wing was touched");
+                    touchListener.setText(R.string.left_wing);
                 }
                 if (i == 10) {
-                    touchListener.setText("Right wing was touched");
+                    touchListener.setText(R.string.right_wing);
                 }
                 if (i == 11) {
-                    touchListener.setText("Center of head was touched");
+                    touchListener.setText(R.string.center_head);
                 }
                 if (i == 12) {
-                    touchListener.setText("Right side of head was touched");
+                    touchListener.setText(R.string.right_head);
                 }
                 if (i == 13) {
-                    touchListener.setText("Left side of head was touched");
+                    touchListener.setText(R.string.left_head);
                 }
             }
         });

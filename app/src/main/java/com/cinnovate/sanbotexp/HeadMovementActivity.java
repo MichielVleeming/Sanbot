@@ -11,10 +11,8 @@ import com.sanbot.opensdk.function.beans.headmotion.LocateAbsoluteAngleHeadMotio
 import com.sanbot.opensdk.function.beans.headmotion.RelativeAngleHeadMotion;
 import com.sanbot.opensdk.function.unit.HeadMotionManager;
 
-public class HeadMovementActivity extends MainActivity implements View.OnClickListener {
+public class HeadMovementActivity extends MainActivity  {
     HeadMotionManager headMotionManager;
-    Button headLeft, headRight, headUp, headDown, headReset,
-            headAbsoluteLeft, headAbsoluteRight, headAbsoluteUp, headAbsoluteDown;
 
     @Override
     protected void onMainServiceConnected() {
@@ -31,30 +29,10 @@ public class HeadMovementActivity extends MainActivity implements View.OnClickLi
         setContentView(R.layout.head_movement_activity);
         headMotionManager = (HeadMotionManager) getUnitManager(FuncConstant.HEADMOTION_MANAGER);
 
-        headLeft = findViewById(R.id.moveHeadLeft);
-        headRight = findViewById(R.id.moveHeadRight);
-        headUp = findViewById(R.id.moveHeadUp);
-        headDown = findViewById(R.id.moveHeadDown);
-        headReset = findViewById(R.id.resetHead);
-        headAbsoluteLeft = findViewById(R.id.moveHeadAbsoluteLeft);
-        headAbsoluteRight = findViewById(R.id.moveHeadAbsoluteRight);
-        headAbsoluteUp = findViewById(R.id.moveHeadAbsoluteUp);
-        headAbsoluteDown = findViewById(R.id.moveHeadAbsoluteDown);
 
-
-        headLeft.setOnClickListener(this);
-        headRight.setOnClickListener(this);
-        headUp.setOnClickListener(this);
-        headDown.setOnClickListener(this);
-        headReset.setOnClickListener(this);
-        headAbsoluteLeft.setOnClickListener(this);
-        headAbsoluteRight.setOnClickListener(this);
-        headAbsoluteUp.setOnClickListener(this);
-        headAbsoluteDown.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
+    public void onHeadClick(View v) {
         RelativeAngleHeadMotion relativeAngleHeadMotion;
         AbsoluteAngleHeadMotion absoluteAngleHeadMotion;
         switch (v.getId()) {
