@@ -94,5 +94,7 @@
     <string name="left_head">left head</string>
     <string name="pir_front">Someone is infront of Sanbot</string>
     <string name="pir_back">Someone is behind Sanbot</string>
+    <string name="recognition">FaceRecognition</string>
+    <string name="recognition_activity">Recognition Demo</string>
 
 </resources>

@@ -64,6 +64,9 @@ public class MainActivity extends TopBaseActivity {
             case R.id.emotionStarter:
                 i = new Intent(this, EmotionActivity.class);
                 break;
+            case R.id.FaceRecognitionStarter:
+                i = new Intent(this, FaceRecognitionActivity.class);
+                break;
         }
         startActivity(i);
     }

@@ -153,12 +153,13 @@
             android:padding="16dp"
             android:text="@string/emotion_activity" />
 
-        <!--<Button-->
-        <!--android:id="@+id/projectorStarter"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:padding="16dp"-->
-        <!--style="@style/buttonStyle"-->
-        <!--android:text="@string/projector_activity" />-->
+        <Button
+            android:id="@+id/FaceRecognitionStarter"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:onClick="onMainClick"
+            android:padding="16dp"
+            android:text="@string/recognition_activity" />
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>
