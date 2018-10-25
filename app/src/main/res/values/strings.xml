@@ -96,5 +96,6 @@
     <string name="pir_back">Someone is behind Sanbot</string>
     <string name="recognition">FaceRecognition</string>
     <string name="recognition_activity">Recognition Demo</string>
+    <string name="FaceRecognized">Your name is</string>
 
 </resources>
