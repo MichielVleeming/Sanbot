@@ -23,9 +23,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
-            <meta-data
-                android:name="RECOGNIZE_MODE"
-                android:value="1" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -64,10 +62,16 @@
         <activity android:name=".ProjectorActivity" />
         <activity android:name=".FaceRecognitionActivity" />
 
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <provider
             android:name="com.sanbot.opensdk.utils.GrammarProvider"
 
-            android:authorities="com.qihancloud.sanbotexp.grammar"
+            android:authorities="com.cinnovate.sanbotexp.grammar"
             android:exported="true" />
     </application>
 

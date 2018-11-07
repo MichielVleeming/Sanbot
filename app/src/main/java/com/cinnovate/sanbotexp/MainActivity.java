@@ -5,8 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.JsonObject;
 import com.sanbot.opensdk.base.TopBaseActivity;
 import com.sanbot.opensdk.function.beans.SpeakOption;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends TopBaseActivity {
     SpeakOption speakOption = new SpeakOption();
@@ -25,6 +31,8 @@ public class MainActivity extends TopBaseActivity {
         super.onCreate(savedInstanceState);
         onMainServiceConnected();
         setBodyView(R.layout.activity_main);
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
 
     }
 

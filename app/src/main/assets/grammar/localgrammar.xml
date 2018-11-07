@@ -1,9 +1,8 @@
 <Grammars>
     <group>
         <command>
-            <item>冰箱</item>
-            <item>洗衣机</item>
             <item>test</item>
+            <item>start</item>
         </command>
         <topic>test_topic</topic>
         <action>start</action>

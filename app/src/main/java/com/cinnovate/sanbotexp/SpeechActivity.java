@@ -13,6 +13,7 @@ import com.sanbot.opensdk.function.beans.SpeakOption;
 import com.sanbot.opensdk.function.beans.speech.Grammar;
 import com.sanbot.opensdk.function.unit.SpeechManager;
 import com.sanbot.opensdk.function.unit.interfaces.speech.RecognizeListener;
+import com.sanbot.opensdk.function.unit.interfaces.speech.SpeechListener;
 
 public class SpeechActivity extends MainActivity implements View.OnClickListener {
     SpeechManager speechManager;
@@ -54,15 +55,11 @@ public class SpeechActivity extends MainActivity implements View.OnClickListener
 
     private void setListener() {
 
-
         speechManager.setOnSpeechListener(new RecognizeListener() {
             @Override
             public boolean onRecognizeResult(Grammar grammar) {
-                Log.i("Content Recognized: ", grammar.getText());
+                Log.e("service: ", grammar.getText());
                 spokenText.setText(grammar.getText());
-                if (grammar.getTopic().equals("test")) {
-                    speechManager.startSpeak("Hi there");
-                }
                 return true;
             }
 

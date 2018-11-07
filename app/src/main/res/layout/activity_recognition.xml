@@ -5,12 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:layout_width="wrap_content"
         android:id="@+id/FaceRecognition"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/recognition"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="36sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
