@@ -36,7 +36,6 @@ public class SoundSourceActivity extends MainActivity {
         hardWareManager.setOnHareWareListener(new VoiceLocateListener() {
             @Override
             public void voiceLocateResult(int soundAngle) {
-
                 String x = Integer.toString(soundAngle);
                 textView.setText(x);
                 turntoSound(soundAngle);
