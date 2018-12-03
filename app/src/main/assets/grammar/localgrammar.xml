@@ -1,0 +1,15 @@
+<Grammars>
+    <group>
+        <command>
+            <item>test</item>
+            <item>start</item>
+            <item>help</item>
+        </command>
+        <topic>test_topic</topic>
+        <action>start</action>
+        <topic>test</topic>
+        <action>start</action>
+        <topic>help</topic>
+        <action>start</action>
+    </group>
+</Grammars>
