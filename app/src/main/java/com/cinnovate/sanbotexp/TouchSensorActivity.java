@@ -31,44 +31,45 @@ public class TouchSensorActivity extends MainActivity {
         hardWareManager.setOnHareWareListener(new TouchSensorListener() {
             @Override
             public void onTouch(int i) {
-                if (i == 1) {
-                    touchListener.setText(R.string.right_chin);
-                }
-                if (i == 2) {
-                    touchListener.setText(R.string.left_chin);
-                }
-                if (i == 3) {
-                    touchListener.setText(R.string.left_chest);
-                }
-                if (i == 4) {
-                    touchListener.setText(R.string.right_chest);
-                }
-                if (i == 5) {
-                    touchListener.setText(R.string.left_chest_back);
-                }
-                if (i == 6) {
-                    touchListener.setText(R.string.right_chest_back);
-                }
-                if (i == 7) {
-                    touchListener.setText(R.string.left_back);
-                }
-                if (i == 8) {
-                    touchListener.setText(R.string.right_back);
-                }
-                if (i == 9) {
-                    touchListener.setText(R.string.left_wing);
-                }
-                if (i == 10) {
-                    touchListener.setText(R.string.right_wing);
-                }
-                if (i == 11) {
-                    touchListener.setText(R.string.center_head);
-                }
-                if (i == 12) {
-                    touchListener.setText(R.string.right_head);
-                }
-                if (i == 13) {
-                    touchListener.setText(R.string.left_head);
+                switch (i) {
+                    case 1:
+                        touchListener.setText(R.string.right_chin);
+                        break;
+                    case 2:
+                        touchListener.setText(R.string.left_chin);
+                        break;
+                    case 3:
+                        touchListener.setText(R.string.left_chest);
+                        break;
+                    case 4:
+                        touchListener.setText(R.string.right_chest);
+                        break;
+                    case 5:
+                        touchListener.setText(R.string.left_chest_back);
+                        break;
+                    case 6:
+                        touchListener.setText(R.string.right_chest_back);
+                        break;
+                    case 7:
+                        touchListener.setText(R.string.left_back);
+                        break;
+                    case 8:
+                        touchListener.setText(R.string.right_back);
+                        break;
+                    case 9:
+                        touchListener.setText(R.string.left_wing);
+                        break;
+                    case 10:
+                        touchListener.setText(R.string.right_wing);
+                        break;
+                    case 11:
+                        touchListener.setText(R.string.center_head);
+                        break;
+                    case 12:
+                        touchListener.setText(R.string.right_head);
+                        break;
+                    case 13:
+                        touchListener.setText(R.string.left_head);
                 }
             }
         });

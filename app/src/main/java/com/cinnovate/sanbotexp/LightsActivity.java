@@ -33,8 +33,7 @@ public class LightsActivity extends MainActivity {
 
 
     public void onLightClick(View v) {
-        int x = v.getId();
-        switch (x) {
+        switch (v.getId()) {
             case R.id.whiteLightOn:
                 hardWareManager.switchWhiteLight(true);
                 break;

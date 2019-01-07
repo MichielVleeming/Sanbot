@@ -1,6 +1,7 @@
 package com.cinnovate.sanbotexp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -38,22 +39,22 @@ public class SoundSourceActivity extends MainActivity {
             public void voiceLocateResult(int soundAngle) {
                 String x = Integer.toString(soundAngle);
                 textView.setText(x);
-                turntoSound(soundAngle);
+                turnToSound(soundAngle);
 
             }
 
-            private void turntoSound(int soundAngle) {
-                if (soundAngle < 180) {
-                    relativeAngleWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_RIGHT, 5, soundAngle);
-
-
-                }
-                if (soundAngle > 180 && soundAngle < 360) {
-                    relativeAngleWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_LEFT, 5, 360-soundAngle);
-                }
-                wheelMotionManager.doRelativeAngleMotion(relativeAngleWheelMotion);
-            }
 
         });
+    }
+
+    private void turnToSound(int soundAngle) {
+        if (soundAngle < 180)
+            relativeAngleWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_RIGHT, 5, soundAngle);
+        else if (soundAngle > 180 && soundAngle < 360)
+            relativeAngleWheelMotion = new RelativeAngleWheelMotion(RelativeAngleWheelMotion.TURN_LEFT, 5, 360 - soundAngle);
+        else
+            Log.e("SoundSourceActivity:", "Already looking at subject");
+
+        wheelMotionManager.doRelativeAngleMotion(relativeAngleWheelMotion);
     }
 }
